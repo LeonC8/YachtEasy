@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+
+{% block content %}
+        <div class= "row justify-content-center col-12 pr-0 pl-0 w-100 mx-0">
+          <h2 class="alert  d-inline-flex mb-2 mt-2 w-25 justify-content-center " style = "background-color: #1769e4  ; color: white; border: 1px solid black"> <i class="fas fa-address-card mr-3"></i>   Add client: </h2>
+        </div>
+
+    
+    
+      
+    
+    <!--===============================================================================================-->
+      <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+      <script src="vendor/bootstrap/js/popper.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+      <script src="vendor/select2/select2.min.js"></script>
+      <script>
+        $(".selection-2").select2({
+          minimumResultsForSearch: 20,
+          dropdownParent: $('#dropDownSelect1')
+        });
+      </script>
+    <!--===============================================================================================-->
+      <script src="js/main.js"></script>
+    
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-23581568-13');
+    </script>
+    
+    <div class="container col-12 px-5 shadow-lg"  style = "border: 1px solid; border-color:  #3d76cb">
+      <form action = "{% url 'addClient2' user.username %}" method="POST" >
+        
+        {% csrf_token %}
+
+        <div class="row">
+          
+          <h3 style = "color:black!important; "> Basic info </h3>
+          <div class="input-group input-group-icon">
+            <i class="fas fa-user input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+            <input type="text" placeholder="Full Name" name = "name"/>
+            
+          </div>
+          
+          <div class="input-group input-group-icon">
+            <i class="fas fa-phone input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+            <input type="text" placeholder="Phone" name = "phone"/>
+            
+          </div>
+
+          <div class="input-group input-group-icon">
+            <i class="fas fa-envelope input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+            <input type="email" placeholder="Email" name = "email"/>
+            
+          </div>
+        </div>
+        
+        <div class="row">
+          
+          <div class="input-group input-group-icon">
+            <i class="fas fa-flag input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+            <input type="text" placeholder="State" name = "state"/>
+            
+          </div>
+          <h3 style = "color:black;"> Boat </h3>
+          <div class="input-group input-group-icon">
+            <i class="fas fa-ship input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+            <input type="text" placeholder="Brand" name = "brand"/>
+          
+          </div>
+
+          <div class="input-group input-group-icon">
+            <i class="fas fa-ship input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+            <input type="text" placeholder="Model" name = "model"/>
+            
+          </div>
+          
+
+        </div><div class="row">
+          
+          <div class="input-group input-group-icon">
+            <i class="fas fa-calendar input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+            <input type="text" placeholder="Year" name = "year"/>
+            
+          </div>
+
+          <div class="input-group input-group-icon">
+            <i class="fas fa-map-marked-alt input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+            <input type="text" placeholder="Location" name = "location"/>
+            
+          </div>
+          <h3 style = "color:black;"> Communication </h3>
+          <div class="input-group input-group-icon">
+            <i class="fas fa-edit input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+            <input type="text" placeholder="Description" name = "description"/>
+            
+          </div>
+          
+
+        </div>
+        <div class="row">
+         
+          <div class="input-group input-group-icon">
+            <i class="fas input-icon" style = "color: #3d76cb; font-size: 17px"> 1 </i>
+            <input type="text" placeholder="Look1" name = "look1"/>
+            
+          </div>
+
+          <div class="input-group input-group-icon">
+            <i class="fas  input-icon" style = "color: #3d76cb; font-size: 17px"> 2 </i>
+            <input type="text" placeholder="Look2" name = "look2"/>
+            
+          </div>
+
+          <div class="input-group input-group-icon">
+            <i class="fas fa-comments-dollar input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+            <input type="number" placeholder="Budget" name = "budget"/>
+          </div>
+        </div>
+
+          <div class="row" >
+            
+            <div class="input-group input-group-icon">
+              <i class="fas fa-comment input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+              <input type="text" placeholder="First contact" name = "first_contact"/>
+              
+            </div>
+
+            <div class="input-group input-group-icon">
+              <i class="fas fa-bell input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+              <input type="text" placeholder="To contact" name = "to_contact"/>
+              
+            </div>
+
+            <div class="input-group input-group-icon">
+              <input type="text" placeholder="Communication" name = "communication"/>
+              <i class="fas fa-comments input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+            </div>
+          </div>
+          
+          
+        <div class = "row">
+            <h3 style = "color:black;"> Importance</h3>
+            
+            <div class="input-group input-group-icon">
+              <input type="number" placeholder="Importance" name = "importance"/>
+              <i class="fas fa-exclamation input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+            </div>
+          
+        </div>
+        
+        <div class = "row justify-content-center">
+        <input style = "background-color: #1769e4" class= "btn  mb-2  btn-animation-1  mt-2 w-100 ml-0" id = "addClient"  type= "submit" value= "Add client" class="col-8" />
+        </div>
+
+      </form>
+    </div>
+{% endblock %}

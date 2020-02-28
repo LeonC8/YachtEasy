@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+<!--
+
+<div class= "row justify-content-center">
+    <form class= "ml-2 mt-2 border border-info p-2 shadow" style = "background-color: rgb(240,240,240);" action= "{% url 'addBoat2' username %}" method="POST" enctype="multipart/form-data" >
+
+      {% csrf_token %}
+    
+      
+      
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class=" input-group-text"> Name </span>
+        </div>
+        <input type= "text" name="boat_name" />
+      </div>
+      
+      
+    
+      
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class=" input-group-text"> Description </span>
+        </div>
+        <input  type= "text" name="boat_description"/>
+      </div>
+      
+      
+      
+      <div class="input-group mb-3 ">
+        <div class="input-group-prepend">
+          <span class=" input-group-text"> $ </span>
+        </div>
+        <input  type= "text" name="boat_price"/>
+      </div>
+      
+      
+      <div class="input-group mb-3">
+        <div class="input-group-prepend ">
+          <span class=" input-group-text "> Photo </span>
+        </div>
+        <input type= "file" name="photo" />
+      </div>
+      
+      <div class="input-group mb-3">
+        <div class="input-group-prepend ">
+          <span class=" input-group-text "> Photo </span>
+        </div>
+        <input type= "file" name="photo2" />
+      </div>
+      
+      <div class="input-group mb-3">
+        <div class="input-group-prepend ">
+          <span class=" input-group-text "> Photo </span>
+        </div>
+        <input type= "file" name="photo3" />
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend ">
+          <span class=" input-group-text "> Photo </span>
+        </div>
+        <input type= "file" name="photo4" />
+      </div>
+      
+      <input class= "btn btn-primary mb-2" type= "submit" value= "Add boat" class="col-12 m-b-1" />
+     
+
+    </form>
+    </div>
+      <hr>
+-->
+
+
+
+{% block content %}
+        <div class= "row justify-content-center col-12 pr-0 pl-0 w-100 mx-0">
+          <h2 class="alert  d-inline-flex mb-2 mt-2 w-25 justify-content-center " style = "background-color: #1769e4  ; color: white; border: 1px solid black"> <i class="fas fa-address-card mr-3"></i>   Add client: </h2>
+        </div>
+
+    
+    
+      
+    
+    <!--===============================================================================================-->
+      <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+      <script src="vendor/bootstrap/js/popper.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+      <script src="vendor/select2/select2.min.js"></script>
+      <script>
+        $(".selection-2").select2({
+          minimumResultsForSearch: 20,
+          dropdownParent: $('#dropDownSelect1')
+        });
+      </script>
+    <!--===============================================================================================-->
+      <script src="js/main.js"></script>
+    
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-23581568-13');
+    </script>
+    
+    <div class="container col-12 px-5 shadow-lg"  style = "border: 1px solid; border-color:  #3d76cb">
+      <form action = "{% url 'addBoat2' username %}" method="POST" enctype="multipart/form-data">
+        
+        {% csrf_token %}
+
+        <div class="row">
+          
+          <h3 style = "color:black!important; "> Basic info </h3>
+          <div class="input-group input-group-icon">
+            
+            <input type="text" placeholder="Boat name" name = "boat_name"/>
+            <i class="fas fa-ship input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+          </div>
+          
+          <div class="input-group input-group-icon">
+            <i class="fas fa-edit input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+            <input type="text" placeholder="Description" name = "boat_description"/>
+            
+          </div>
+
+          <div class="input-group input-group-icon">
+            <i class="fas fa-money-bill-wave input-icon " style = "color: #3d76cb; font-size: 17px"></i>
+            <input type="number" placeholder="Price" name = "boat_price"/>
+            
+          </div>
+        </div>
+        <div class = "row">
+          
+          <div class="input-group mb-3">
+            <div class="input-group-prepend ">
+              <span class=" input-group-text" style= "color:black" > Main Photo</span>
+            </div>
+            <input type= "file" name="photo" />
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend ">
+              <span class=" input-group-text "> Other photos</span>
+            </div>
+            <input type= "file" name="photoslist" multiple/>
+          </div>
+        
+        
+        </div>
+        <div class = "row justify-content-center">
+        <input style = "background-color: #1769e4" class= "btn  mb-2  btn-animation-1  mt-2 w-100 ml-0" id = "addClient"  type= "submit" value= "Add Boat" class="col-8" />
+        </div>
+
+      </form>
+    </div>
+{% endblock %}

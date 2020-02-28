@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block content %}
+        <div class= "row justify-content-center col-12 pr-0 pl-0 w-100 mx-0">
+          <h2 class="alert  d-inline-flex mb-2 mt-2 w-25 justify-content-center rounded" style = "background-color: #1769e4; border: 1px solid black" > <i class="fas fa-search mr-3" style = "margin-top: 3px"></i> Filter clients </h2>
+        </div>
+
+    
+    
+      
+    
+    <!--===============================================================================================-->
+      <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+      <script src="vendor/bootstrap/js/popper.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+      <script src="vendor/select2/select2.min.js"></script>
+      <script>
+        $(".selection-2").select2({
+          minimumResultsForSearch: 20,
+          dropdownParent: $('#dropDownSelect1')
+        });
+      </script>
+    <!--===============================================================================================-->
+      <script src="js/main.js"></script>
+    
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-23581568-13');
+    </script>
+    
+    <div class="container col-8" class = "rounded-pill shadow-lg" style = "border: 1px solid; border-color:  #3d76cb" >
+      <form action = "{% url 'filterClients2' user.username %}" method="POST">
+        
+        {% csrf_token %}
+
+        <div class="row">
+          
+        
+          <div class="input-group input-group-icon">
+
+            <input type="text" placeholder="Full Name" name = "name"/>
+            <i class="fas fa-user input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+          </div>
+
+          <div class="input-group input-group-icon">
+            <input type="text" placeholder="State" name = "state"/>
+            <i class="fas fa-flag input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+          </div>
+
+          <div class="input-group input-group-icon">
+            <input type="text" placeholder="Brand" name = "brand"/>
+            <i class="fas fa-ship input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+          </div>
+          <div class="input-group input-group-icon">
+            <input type="text" placeholder="Location" name = "location"/>
+            <i class="fas fa-map-marked input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+          </div>
+
+          
+        </div>
+
+        
+
+        <div class="row">
+          
+
+          <div class="input-group input-group-icon">
+            <input type="text" placeholder="Model" name = "model"/>
+            <i class="fas fa-ship input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+          </div>
+          <h2 style = "color: black" > Year </h2>
+        
+          <div class="input-group input-group-icon">
+            <input type="text" placeholder="Year MIN" name = "year_min"/>
+            <i class="fas fa-calendar-plus input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+          </div>
+
+          <div class="input-group input-group-icon">
+            <input type="text" placeholder="Year MAX" name = "year_max"/>
+            <i class="fas fa-calendar-minus input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+          </div>
+
+          
+       
+        </div>
+
+     
+          
+        <div class="row">
+         
+          <h2 style = "color: black" > Budget </h2>
+          <div class="input-group input-group-icon">
+            <input type="number" placeholder="Budget MIN" name = "budget_min"/>
+            <i class="fas fa-search-dollar input-icon" style = "color: #3d76cb; font-size: 18px"></i>
+          </div>
+
+          <div class="input-group input-group-icon">
+            <input type="number" placeholder="Budget MAX" name = "budget_max"/>
+            <i class="fas fa-search-dollar input-icon" style = "color: #3d76cb; font-size: 18px"></i>
+          </div>
+
+       <h2 style = "color: black" > Importance </h2>
+            <div class="input-group input-group-icon">
+              <input type="number" placeholder="Importance MIN" name = "importance_min"/>
+              <i class="fas fa-exclamation input-icon" style = "color: #3d76cb; font-size: 17px; font-weight: bold;">  min </i>
+            </div>
+
+            <div class="input-group input-group-icon">
+              <input type="number" placeholder="Importance MAX" name = "importance_max"/>
+              <i class="fas fa-exclamation input-icon" style = "color: #3d76cb; font-size: 17px"> max </i>
+            </div>
+          
+        </div>
+        <input type="hidden" id="csrf_token" value='{"csrfmiddlewaretoken": "{{ csrf_token }}"}'>
+        <div class = "row justify-content-center">
+        <input class= "btn  mb-2  btn-animation-1 rounded-pill  mt-2 w-50 ml-0" id = "addClient" style = "background-color: #1769e4 " type= "submit" value= "Apply filter" class="col-8" />
+        </div>
+        
+      </form>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class= "row col-12 mt-3 ml-3 ">
+  <h2 class = "alert rounded-pill shadow mb-4 " style = "background-color: #1769e4; min-width: 450px;text-align: center; font-size: 40px;color: white; border: 1px solid black; margin-left: 495px"  > {{ client.name }}</h2>
+  <form action = "{% url 'clientDetails' client.name %}" method="post" class ="ml-4" style = "margin-top: 22px">
+    {% csrf_token %}
+    <button style = "height: 40px;overflow: hidden; font-size: 16px; background-color: #c53d07; color: white; letter-spacing: 1px; " class = "btn ml-2 my-2" > <i class="fas fa-edit mr-1" style = "margin-top: 4px"></i> Edit information </button>       
+  </form>
+</div>
+
+
+<div class = "row col-12  ">
+<div class = "card shadow rounded  col-3 ml-4 mr-2" style = "color:rgb(255, 255, 255); background-color: #3d76cb;">
+  
+  <div class = "card-body justify-content-center font-weight-bold" style = "text-align: center;">
+    <div class = "card-title" style = "text-align: center;font-size: 32px; color: white!important; font-weight: bolder !important">
+      Contact information
+    </div>
+    <hr class = "w-100" style = "border-top: 1px solid rgb(0, 0, 0)">
+    <p style = "font-size: 18px">
+    Phone : {{client.phone}}
+    <br>
+    Email : {{client.email}}
+    <br>
+    State : {{client.state}}
+    </p>
+  </div>
+</div>
+
+
+<div class = "card shadow rounded col-3 display-inline ml-2 mr-2" style = "color:rgb(255, 255, 255); background-color: #3d76cb;">
+  
+  <div class = "card-body justify-content-center font-weight-bold" style = "text-align: center;">
+    <div class = "card-title" style = "text-align: center;font-size: 30px">
+      Boat
+    </div>
+    <hr class = "w-100" style = "border-top: 1px solid rgb(0, 0, 0)">
+    <p style = "font-size: 18px">
+      {{ client.brand }} {{ client.model }}
+    <br>
+    Location: {{client.location}}
+    <br>
+    Year : {{client.year}}
+    </p>
+  </div>
+</div>
+
+
+<div class = "card shadow rounded col-3 display-inline ml-2 mr-2" style = "color:rgb(255, 255, 255); background-color: #3d76cb;">
+  
+  <div class = "card-body justify-content-center font-weight-bold" style = "text-align: center;">
+    <div class = "card-title" style = "text-align: center;font-size: 30px">
+      Other
+    </div>
+    <hr class = "w-100" style = "border-top: 1px solid rgb(0, 0, 0)">
+    <p style = "font-size: 18px">
+      Budget : {{client.budget}}
+    <br>
+    Offer 1: {{client.look1}}
+    <br>
+    Offer 2: {{client.look2}}
+    </p>
+  </div>
+</div>
+</div>
+
+</div>
+
+
+
+<div class = "row col-12 mt-3">
+  <div class = "card shadow rounded  col-9 ml-5 mr-2" style = "color:rgb(255, 255, 255); background-color: #3d76cb;">
+  
+    <div class = "card-body font-weight-bold" >
+      <div class = "card-title" style = "font-size: 30px">
+        Communication
+      </div>
+      <hr class = "w-100" style = "border-top: 1px solid rgb(0, 0, 0)">
+      <p style = "font-size: 18px">
+      First contact : {{client.first_contact}}
+      <br>
+      To contact : {{ client.to_contact}}
+      <br>
+      Communication : {{ client.communication }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<!--
+<div id = "client-card" class="card justify-content-center shadow d-inline-block  my-3 ml-4 pt-0" >
+                
+    <div class="card-body p-0">
+        
+            
+        
+        {% if importance >= 8 %}
+        <div class = "w-100 py-2 m-0 " style = "background-color: #1769e4 ;">
+            <h4 class="card-title ml-3 mt-2" >{{client.name}} ({{client.importance }})</h4>
+        </div>
+        {% endif %}
+
+
+      {% if boat.photo %}
+      <div >
+      <img height="130" src="{{ boat.photo.url }}">
+      </div>
+      {% endif %}
+      
+      <ul class="list-group list-group-flush "></ul>
+        
+        <li class="list-group-item"><p class="card-text w-100">Email: {{client.email}}</p></li>
+        <li class="list-group-item"><p class="card-text">Phone : {{client.phone}}</p></li>
+        <li class= "list-group-item"><p class= "card-text"> Model: {{ client.brand }} {{ client.model }}</p></li>
+        <li class="list-group-item"><p class="card-text w-100"> State : {{client.state}}</p></li>
+        <li class="list-group-item"><p class="card-text">Boat year : {{client.year}}</p></li>
+        <li class= "list-group-item"><p class= "card-text"> Location: {{ client.location }}</p></li>
+        <li class="list-group-item"><p class="card-text w-100">Description: {{client.description}}</p></li>
+        <li class="list-group-item"><p class="card-text">Look1: {{client.look1}}</p></li>
+        <li class= "list-group-item"><p class= "card-text"> Look2: {{client.look2}}</p></li>
+        <li class="list-group-item"><p class="card-text w-100"> Budget: {{client.budget}}</p></li>
+        <li class="list-group-item"><p class="card-text">First contact: {{client.first_contact}}</p></li>
+        <li class= "list-group-item"><p class= "card-text"> To contact: {{client.to_contact}}</p></li>
+        <li class="list-group-item"><p class="card-text">Communication: {{client.communication}}</p></li>
+        
+      </ul>
+
+      <form action = "{% url 'clientDetails' client.name %}" method="post">
+        {% csrf_token %}
+        <button style = "height: 40px;overflow: hidden; " class = "btn btn-primary ml-2 my-2">   Edit info  </button>       
+      </form>
+        
+      <form  action = "{% url 'deleteClient' client.name %}" method="post">
+        {% csrf_token %}
+        <div class="ml-2 flex p-0" >
+        <button class="btn btn-danger mb-2 mt-2 " style = "height: 40px;overflow: hidden;"> Delete </button>
+        </div>
+      </form>
+
+      
+                  
+      
+    </div>
+
+  </div>
+-->
+
+{% endblock %}

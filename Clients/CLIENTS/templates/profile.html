@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class = "col-8 border-left border-right border-bottom border-info bg-light pt-2 shadow">
+        
+        <div class= "row justify-content-center col-12">
+          <h1 class="alert alert-info d-inline-flex shadow w-50 justify-content-center" >-- Your boats: --</h1>
+        </div>
+        
+
+        {% if user.boat_set.all %}
+          {%for boat in user.boat_set.all %}
+        <div class="card shadow d-inline-block  mb-2 ml-2" style="width: flex;">
+          
+            <div class="card-body p-0">
+              <h4 class="card-title ml-3 mt-2" >{{boat.boat_name}}</h4>
+              {% if boat.photo %}
+              <div >
+              <img height="130" src="{{ boat.photo.url }}">
+              </div>
+              {% endif %}
+              
+              <ul class="list-group list-group-flush "></ul>
+                
+                <li class="list-group-item"><p class="card-text w-100">{{boat.boat_description}}</p></li>
+                <li class="list-group-item"><p class="card-text">Owner : {{boat.user.username}}</p></li>
+                <li class= "list-group-item"><p class= "card-text">{{boat.boat_price}} $</p></li>
+              </ul>
+
+              <form  method="post">
+                {% csrf_token %}
+                <div class="ml-2">
+                <button class="btn btn-danger mb-2 mt-2"> Delete </button>
+                </div>
+              </form>
+
+              <form  method="post">
+                {% csrf_token %}
+                <div class="ml-2">
+                <button class="btn btn-outline-primary mb-2 mt-2"> Edit boat</button>
+                </div>
+              </form>
+
+              
+            </div>
+          </div>
+          {% endfor %}
+
+
+        {% endif %}  
+
+      </div>
+    </div>
+  </div>
+  
+        
+
+
+        
+        <script src="" async defer></script>
+
+
+{% endblock %}

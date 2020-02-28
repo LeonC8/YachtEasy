@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row ">
+
+    <div class=" col-2 ">
+      <a href="{% url 'addClient' user.username %} " class="btn btn-animation-1  mt-2 w-75 ml-4 font-weight-bold" style = "border:1px solid black !important;background-color: #e43617">Add Client <b>+</b> </a> 
+      
+      
+        <a href="{% url 'filterClients' user.username %} " class="btn btn-animation-1 mt-2 w-75 ml-4 shadow font-weight-bold justify-content-center" style = "border:1px solid black !important;background-color: #e43617"> Filter </a> 
+      
+    </div>
+  
+
+  <!-- <a class="bt more-bt col-1 mt-3 mr-2 p-2" style = "text-decoration:none; height: 20%" href="javascript:void(0)">
+      <span class="fl"></span><span class="sfl"></span><span class="cross"></span><i></i>
+      <p class = "mb-0">add</p>
+     </a>  -->
+
+    <div class = "col-8 border-left border-right border-bottom border-info bg-light pt-2 shadow" style = "min-height: 1000px;">
+
+          <div class= "row justify-content-center col-12 mt-3 mb-2">
+            <h1 class= "alert  d-inline-flex shadow " style = "color:white; background-color:#1769e4"> Clients</h1>
+          </div>
+          
+          <hr>
+         
+          {% for client in clients %}
+          
+              <div id = "client-card" class=" card justify-content-center shadow d-inline-block  mb-2 ml-2 bg-light rounded"  >
+                
+                <div class="card-body p-0 rounded ">
+                  
+                  {% if client.importance >= 8 %}
+                  <div class = "w-100 py-2 m-0 " style = "background-color: #1769e4 ;">
+                      <h4 class="card-title ml-3 mt-2" > {{client.name}} ({{client.importance }}) </h4>
+                  </div>
+                  {% else %}
+                  <div class = "w-100 py-2 m-0 " style = "background-color: #1769e4 ;">
+                    <h4 class="card-title ml-3 mt-2" >{{client.name}} ({{client.importance }})</h4>
+                  </div>
+                  {% endif %}
+                  <br>
+                  {% if boat.photo %}
+                  <div >
+                  <img height="130" src="{{ boat.photo.url }}">
+                  </div>
+                  {% endif %}
+                  
+                  <ul class="list-group list-group-flush "></ul>
+                    
+                    <li class="list-group-item"><p class="card-text w-100">{{client.email}}</p></li>
+                    <li class="list-group-item"><p class="card-text">Phone : {{client.phone}}</p></li>
+                    <li class= "list-group-item"><p class= "card-text"> {{ client.model }}</p></li>
+                    
+                  </ul>
+
+                  
+                    <form action = "{% url 'clientDetails' client.name %}" method="post">
+                      {% csrf_token %}
+                      <button style = "height: 40px;overflow: hidden; " class = "btn btn-primary ml-2 my-2">  More   </button>       
+                    </form>
+                      
+
+                  <form  action = "{% url 'deleteClient' client.name %}"method="post">
+                    {% csrf_token %}
+                    <div class="ml-2 flex p-0" >
+                    <button class="btn btn-danger mb-2 mt-2 " style = "height: 40px;overflow: hidden;"> Delete </button>
+                    </div>
+                  </form>
+    
+                  
+                              
+                  
+                </div>
+            
+              </div>
+
+              
+        
+            
+        
+        {% endfor %} 
+
+        
+        
+        
+    </div>
+  </div>  
+</div>
+       
+    
+    
+    
+        
+      
+
+        <br>
+
+
+
+    
+{% endblock %}

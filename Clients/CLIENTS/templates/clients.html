@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row ">
+
+    <div class=" col-2 left-side" style = "background-image:linear-gradient(to right, white, rgb(235, 235, 235))">
+      <a href="{% url 'addClient' user.username %} " class="btn btn-animation-1  mt-2 w-75 ml-4 font-weight-bold" style = "border:1px solid black !important;background-color: #1769e4; font-size: 17px "> <span style = "font-size : 14px">  <i class="fas fa-plus mr-1" > </span></i>  Add Client</a> 
+      
+      
+        <a href="{% url 'filterClients' user.username %} " class="btn btn-animation-1 mt-2 w-75 ml-4 shadow font-weight-bold justify-content-center" style = "border:1px solid black !important;background-color: #1769e4;font-size: 17px "> <i class="fas fa-search mr-1"></i> Filter </a> 
+        <a href="{% url 'filterClients' user.username %} " class="btn btn-animation-1 mt-2 w-75 ml-4 shadow font-weight-bold justify-content-center" style = "border:1px solid black !important;background-color: #1769e4;font-size: 17px "> <i class="fas fa-calendar-day mr-1"></i> Today </a> 
+        <a href="{% url 'filterClients' user.username %} " class="btn btn-animation-1 mt-2 w-75 ml-4 shadow font-weight-bold justify-content-center" style = "border:1px solid black !important;background-color: #1769e4;font-size: 17px "> <i class="fas fa-calendar-week mr-1"></i> This week </a> 
+      </div>
+  
+
+  <!-- <a class="bt more-bt col-1 mt-3 mr-2 p-2" style = "text-decoration:none; height: 20%" href="javascript:void(0)">
+      <span class="fl"></span><span class="sfl"></span><span class="cross"></span><i></i>
+      <p class = "mb-0">add</p>
+     </a>  -->
+
+    <div class = "col-8 border-left border-right border-bottom border-dark  pt-2 shadow rounded"  style = "min-height: 1000px">
+
+
+
+          <div class= "row justify-content-center col-12 mt-4 mb-3">
+            <h1 class= "alert  d-inline-flex shadow w-50 justify-content-center" style = "color:white; background-color:#1769e4; letter-spacing: 3px; border: 1px solid black; border-radius: 12px;"> <i class="fas fa-users mr-3 " style = "margin-top: 3px;"></i>CLIENTS </h1>
+          </div>
+          
+          
+         
+          {% for client in clients %}
+          
+              <div id = "client-card" class=" card justify-content-center shadow-lg d-inline-block  mb-2 ml-2 bg-light rounded"   >
+                
+                <div class="card-body p-0 rounded ">
+                  
+                  {% if client.importance >= 8 %}
+                  <div class = "w-100 py-1 m-0 rounded" style = "background-color: #3d76cb; border: 1px solid black">
+                      <h3 class="card-title ml-3 mt-2" > {{client.name}}  ({{client.importance }})  </h3>
+                  </div>
+                  {% else %}
+                  <div class = "w-100 py-1 m-0 rounded" style = "background-color: #3d76cb; border: 1px solid black">
+                    <h3 class="card-title ml-3 mt-2" >{{client.name}} ({{client.importance }})</h3>
+                  </div>
+                  {% endif %}
+                  
+                  {% if boat.photo %}
+                  <div >
+                  <img height="130" src="{{ boat.photo.url }}">
+                  </div>
+                  {% endif %}
+                  
+                  <ul class="list-group list-group-flush "></ul>
+                    
+                    <li class="list-group-item"><p class="card-text w-100">{{client.email}}</p></li>
+                    <li class="list-group-item"><p class="card-text">Phone : {{client.phone}}</p></li>
+                    <li class= "list-group-item"><p class= "card-text"> {{ client.model }}</p></li>
+                    
+                  </ul>
+
+                  
+                    <form action = "{% url 'clientDetails' client.name %}" method="post">
+                      {% csrf_token %}
+                      <button style = "height: 40px;overflow: hidden; font-size: 16px; background-color: #3d76cb; color: white; letter-spacing: 1px; " class = "btn ml-2 my-2" > <i class="fas fa-angle-double-right mr-1" style = "margin-top: 4px"></i>  More   </button>       
+                    </form>
+                      
+
+                  <form  action = "{% url 'deleteClient' client.name %}"method="post">
+                    {% csrf_token %}
+                    <div class="ml-2 flex p-0" >
+                    <button class="btn btn-danger mb-2 mt-2 " style = "height: 40px;overflow: hidden; font-size: 16px;  color: white; letter-spacing: 1px; "> <i class="fas fa-trash mr-1" style = "margin-top: 4px"></i>  Delete </button>
+                    </div>
+                  </form>
+    
+                  
+                              
+                  
+                </div>
+            
+              </div>
+
+              
+        
+            
+        
+        {% endfor %} 
+
+        
+        
+        
+    </div>
+
+    <div class = "col-2 row justify-content-center right-side" style = "background-image:linear-gradient(to left, white, rgb(235, 235, 235)); margin-left: 0px;">
+      <a class= "btn btn-danger mt-2 ml-5 " style = "color:white!important; font-size: 17px; letter-spacing: 0.8px; font-weight: 550; border: 1px solid black" href="{% url 'logout' %}"> <i class="fas fa-sign-out-alt mr-2" style = "margin-top: 4px"></i> Logout</a>
+    </div> 
+  </div>  
+</div>
+       
+    
+    
+    
+        
+      
+
+        <br>
+
+
+
+    
+{% endblock %}
