@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from clients_app.views import home, addUser, profile, addClient, addClient2, clientDetails, deleteClient, filterClients, filterClients2
-from boats.views import boatsHome, addBoat, addBoat2, boat_details, deleteBoat, filterBoats2
+from clients_app.views import home, addUser, profile, addClient, addClient2, clientDetails, deleteClient, filterClients, filterClients2, filterClientsDay, filterClientsWeek, UserProfile, editClientInfo, editClientInfo2, signUpForm
+from boats.views import boatsHome, addBoat, addBoat2, boat_details, deleteBoat, filterBoats2, filterBoats, editBoat2
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from django.conf.urls.static import static
@@ -29,16 +29,24 @@ urlpatterns = [
     path('<str:username>/profile/', profile, name="profile"),
     path('<str:username>/addClient', addClient, name = "addClient"),
     path('<str:username>/addClient2', addClient2, name = "addClient2"),
-    path ('<str:name>/clientDetails', clientDetails, name = "clientDetails"),
+    path('<str:name>/clientDetails', clientDetails, name = "clientDetails"),
     path('<str:name>/deleteClient', deleteClient, name = "deleteClient"),
     path ('<str:username>/boats_home', boatsHome, name = "boatsHome"),
     path ('<str:username>/addBoat', addBoat, name = "addBoat"),
     path ('<str:username>/addBoat2', addBoat2, name = "addBoat2"),
     path ('<str:username>/filterClients', filterClients, name = "filterClients"),
-    path ( '<str:username>/<str:boat_name>/details', boat_details, name = "boat_details"),
+    path ( '<str:username>/<str:model>/details', boat_details, name = "boat_details"),
     path ('<str:username>/filterClients2', filterClients2, name = "filterClients2"),
-    path('<str:username>/<str:boat_name>/deleteBoat)', deleteBoat, name = "deleteBoat"),
-    path('<str:username>/filterBoats2', filterBoats2, name = "filterBoats2")
+    path('<str:username>/<str:model>/deleteBoat)', deleteBoat, name = "deleteBoat"),
+    path('<str:username>/filterBoats2', filterBoats2, name = "filterBoats2"),
+    path('<str:username>/filterBoats', filterBoats, name = "filterBoats"),
+    path('<str:username>/filterClientsDay', filterClientsDay, name= "filterClientsDay"),
+    path("<str:username>/filterClientsWeek", filterClientsWeek, name = "filterClientsWeek"),
+    path('<str:username>/profile', UserProfile, name = "userProfile"),
+    path('<str:name>/editClientInfo', editClientInfo, name = "editClientInfo"),
+    path('<str:username>/editClientInfo2', editClientInfo2, name = "editClientInfo2"),
+    path('<str:username>/editBoat2', editBoat2, name = "editBoat2"),
+    path('signUp', signUpForm, name = "signUpForm"),
      
 ]  + static(settings.STATIC_URL,)
 

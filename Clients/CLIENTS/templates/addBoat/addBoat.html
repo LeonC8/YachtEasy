@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load cloudinary %}
+
 <!--
 
 <div class= "row justify-content-center">
@@ -74,14 +76,21 @@
 
 
 {% block content %}
-        <div class= "row justify-content-center col-12 pr-0 pl-0 w-100 mx-0">
-          <h2 class="alert  d-inline-flex mb-2 mt-2 w-25 justify-content-center " style = "background-color: #1769e4  ; color: white; border: 1px solid black"> <i class="fas fa-address-card mr-3"></i>   Add client: </h2>
-        </div>
+        
 
     
     
       
-    
+    <script>
+
+cloudinary.config({ 
+       cloud_name: 'hicfwgrxb', 
+       api_key: '174316256585768',
+       api_secret: 'UVQv-jj5p89IgPmhTUgzUO8ilUM'
+   });
+
+
+    </script>
     <!--===============================================================================================-->
       <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
     <!--===============================================================================================-->
@@ -107,43 +116,89 @@
     
       gtag('config', 'UA-23581568-13');
     </script>
-    
-    <div class="container col-12 px-5 shadow-lg"  style = "border: 1px solid; border-color:  #3d76cb">
-      <form action = "{% url 'addBoat2' username %}" method="POST" enctype="multipart/form-data">
+    <div class= "container-fluid mt-0 pt-4 pb-4" style = "background-image: linear-gradient(to right,#104391, #5389db) ;">
+
+    <div class = "row col-12 w-100 justify-content-center">
+    <div class="container col-12 px-5 pt-4  shadow-lg  mt-0 formContainer  " style = "  border-radius: 17px !important; box-shadow: inset 0px 0px 10px 5px hsla(0, 0%, 0%, 0.12)"  id = "addBoatform"  >
+      <form action = "{% url 'addBoat2' username %}" method="POST" enctype="multipart/form-data"  >
         
         {% csrf_token %}
 
         <div class="row">
           
-          <h3 style = "color:black!important; "> Basic info </h3>
-          <div class="input-group input-group-icon">
-            
-            <input type="text" placeholder="Boat name" name = "boat_name"/>
+          <h3 style = "color:black!important; display: block" class = "mt-3 col-12" > Add Boat</h3>
+          <br>
+
+          <div class="input-group input-group-icon display-inline col-12 pl-1 pr-1" >
+            <input type="text" placeholder="Owner" name = "owner"/>
+            <i class="fas fa-user input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+          </div>
+
+          <div class="input-group input-group-icon display-inline col-12 pl-1 pr-1" >
+            <input type="text" placeholder="Brand" name = "brand" required/>
             <i class="fas fa-ship input-icon" style = "color: #3d76cb; font-size: 17px"></i>
           </div>
           
-          <div class="input-group input-group-icon">
+          <div class="input-group input-group-icon display-inline col-12 pl-1 pr-0">
             <i class="fas fa-edit input-icon" style = "color: #3d76cb; font-size: 17px"></i>
-            <input type="text" placeholder="Description" name = "boat_description"/>
-            
+            <input type="text" placeholder="model" name = "model" required/>
           </div>
 
-          <div class="input-group input-group-icon">
+          <div class="input-group input-group-icon display-inline col-12 pl-1 pr-1">
             <i class="fas fa-money-bill-wave input-icon " style = "color: #3d76cb; font-size: 17px"></i>
-            <input type="number" placeholder="Price" name = "boat_price"/>
-            
+            <input type="number" placeholder="Size in feet" name = "size"/>
           </div>
+          <div class="input-group input-group-icon display-inline col-12 pl-1 pr-0">
+            <i class="fas fa-money-bill-wave input-icon " style = "color: #3d76cb; font-size: 17px"></i>
+          <input type="number" placeholder="Year" name = "year"/>  
+          </div>
+
+          <h3 style = "color:black!important; display:block" class = "col-12"> Specifications </h3>
+
+          <div class="input-group input-group-icon display-inline col-12 pl-1 pr-1">
+            <i class="fas fa-edit input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+            <input type="text" placeholder="Engine" name = "engine"/>
+          </div>
+
+          <div class="input-group input-group-icon display-inline col-12 pl-1 pr-0">
+            <i class="fas fa-edit input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+            <input type="number" placeholder="Engine hours" name = "engine_hours"/>
+          </div>
+
+          <div class="input-group input-group-icon pl-1">
+            <i class="fas fa-edit input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+            <input type="text" placeholder="Equipment" name = "equipment"/>
+          </div>
+
+          <h3 style = "color:black!important; " class = "w-100"> Other </h3>
+          <div class="input-group input-group-icon display-inline col-12 pl-1">
+            <i class="fas fa-edit input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+            <input type="number" placeholder="Value" name = "price"/>
+          </div>
+
+          <div class="input-group input-group-icon display-inline col-12 pl-1 pr-0">
+            <i class="fas fa-edit input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+            <input type="text" placeholder="Location" name = "location"/>
+          </div>
+
+          <div class="input-group input-group-icon pl-1">
+            <i class="fas fa-edit input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+            <input type="text" placeholder="Remarks" name = "description"/>
+          </div>
+
         </div>
         <div class = "row">
           
-          <div class="input-group mb-3">
+          <div class="input-group mb-3 display-inline col-12 pl-1">
             <div class="input-group-prepend ">
               <span class=" input-group-text" style= "color:black" > Main Photo</span>
             </div>
             <input type= "file" name="photo" />
           </div>
 
-          <div class="input-group mb-3">
+         
+          
+          <div class="input-group mb-3 display-inline col-12 pl-1 pr-0">
             <div class="input-group-prepend ">
               <span class=" input-group-text "> Other photos</span>
             </div>
@@ -153,9 +208,11 @@
         
         </div>
         <div class = "row justify-content-center">
-        <input style = "background-color: #1769e4" class= "btn  mb-2  btn-animation-1  mt-2 w-100 ml-0" id = "addClient"  type= "submit" value= "Add Boat" class="col-8" />
+        <input style = "background-image: linear-gradient(to right,#1da128, #82ec8d); color: rgb(22, 22, 22) !important; border-radius: 12px; font-weight: bold; font-size: 27px ; border-right: 0px solid white; box-shadow: 0px 2px 3px 0px rgba(136, 136, 136, 0.726);" class= "btn  mb-2  btn-animation-1  mt-2 w-100 ml-0 " id = "addClient"  type= "submit" value= "Add Boat" class="col-8" />
         </div>
 
       </form>
+    </div>
+    </div>
     </div>
 {% endblock %}

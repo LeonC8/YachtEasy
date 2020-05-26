@@ -2,38 +2,97 @@
 
 {% block content %}
 <div class = "container-fluid">
-<div class = "row">
+<div class = "row justify-content-center">
 
-<div class = "col-6 justify-content-center">
-<form class= "ml-4 mt-4 col-8"  method="POST" enctype="multipart/form-data" >
+<div class = "col-12 col-lg-6 justify-content-center">
+<form class= "ml-4 mt-4 col-12 col-lg-10 boatDetailsContainer mb-3 " action = "{% url 'editBoat2' user.username %}"  method="POST" enctype="multipart/form-data"  >
 
     {% csrf_token %}
   
     
   
+    <input type= "hidden" name = "boat_id" value = "{{boat.id}}" />
+    
+    <div class="input-group mb-3">
+      <div class="input-group-prepend display-inline ">
+        <span class=" input-group-text"> Owner </span>
+      </div>
+      <input type= "text" name="owner" value = "{{boat.owner}} " />
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend ">
+        <span class=" input-group-text"> Brand </span>
+      </div>
+      <input type= "text" name="brand" value = "{{boat.brand}} " />
+    </div>
+
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class=" input-group-text"> Name </span>
+        <span class=" input-group-text"> Model </span>
       </div>
-      <input type= "text" name="boat_name" value = "{{boat.boat_name}}" />
+      <input type= "text" name="model" value = "{{boat.model}} " />
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class=" input-group-text"> Size in feet </span>
+      </div>
+      <input type= "number" name="size" value = "{{boat.size}}" />
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class=" input-group-text"> Year </span>
+      </div>
+      <input type= "number" name="year" value = "{{boat.year}}" />
     </div>
   
-  
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class=" input-group-text"> Engine </span>
+      </div>
+      <input type= "text" name="engine" value = "{{boat.engine}} " />
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class=" input-group-text"> Engine hours </span>
+      </div>
+      <input type= "number" name="engine_hours" value = "{{boat.engine_hours}}" />
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class=" input-group-text"> Equipment </span>
+      </div>
+      <input type= "text" name="equipment" value = "{{boat.equipment}} " />
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class=" input-group-text"> Location </span>
+      </div>
+      <input type= "text" name="location" value = "{{boat.location}} " />
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class=" input-group-text display-inline" style = "font-size :20px"> Price </span>
+      </div>
+      <input  type= "number" name="price" class = "display-inline" value = "{{boat.price}}" />
+    </div>
+
     <div class="input-group mb-3">
     
       <div class="input-group-prepend">
         <span class=" input-group-text"> Description </span>
       </div>
-      <input  type= "text" name="boat_description" value = "{{boat.boat_description}}" />
+      <input  type= "text" name="boat_description" value = "{{boat.description}}" />
       
     </div>
     
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class=" input-group-text display-inline" style = "font-size :20px"> $ </span>
-      </div>
-      <input  type= "text" name="boat_price" class = "display-inline" value = "{{boat.boat_price}}" />
-    </div>
+    
 
     <div class="input-group mb-3">
       <div class="input-group-prepend">
@@ -51,16 +110,17 @@
     </div>
     </div>
 
-    <input style = "background-color: #1769e4; color : white; font-size: 18px" class= "btn mb-2" type= "submit" value= "Edit boat" class="col-12 m-b-1" />
+    <input style = "background-color: #1769e4; color : white; font-size: 20px" id= "editBoat" class= "btn mb-2" type= "submit" value= "Edit boat" class="col-12 m-b-1" />
     
   </form>
 
 </div>
 {% if images %}
-<div class = "col-6 ">
+<div class = "col-12 col-lg-6 justify-content-center mb-4">
   <div class = "row justify-content-center">
-  <h1 class = "alert mt-2" style = "background-color: #3d76cb;display:flex" > Other images</h1>
+  <h1 class = " mt-2 " style= "color: rgb(70, 70, 70)"  > Other images</h1>
   </div>
+  <hr>
   <div class= "row  justify-content-center">
   <div class = "row shadow d-inline-block px-auto bg-light border py-3 " style= "width:80%;">
     

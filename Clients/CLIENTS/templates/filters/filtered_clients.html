@@ -1,16 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container-fluid">
+
+<div class="container-fluid ">
   <div class="row ">
 
-    <div class=" col-2 ">
-      <a href="{% url 'addClient' user.username %} " class="btn btn-animation-1  mt-2 w-75 ml-4 font-weight-bold" style = "border:1px solid black !important;background-color: #e43617">Add Client <b>+</b> </a> 
+    <div class=" col-12 col-lg-2  pb-0 pr-2 buttonsContainer rounded " style = " border: 0px solid ;  background-color: rgb(243, 243, 243);  ">
       
       
-        <a href="{% url 'filterClients' user.username %} " class="btn btn-animation-1 mt-2 w-75 ml-4 shadow font-weight-bold justify-content-center" style = "border:1px solid black !important;background-color: #e43617"> Filter </a> 
-      
-    </div>
+      <a href="{% url 'addClient' user.username %} " class="btn clientsBtn btn-animation-1  mt-2 col-4 col-lg-10 ml-2 font-weight-bold" style = "border:0px solid black !important;; font-size: 17px "> <span style = "font-size : 14px">  <i class="fas fa-plus mr-1" id = "plusIcon" > </i> </span>  Add Client</a> 
+        <a href="{% url 'filterClients' user.username %} " class="btn clientsBtn btn-animation-1 mt-2 col-4 col-lg-10 ml-2  font-weight-bold justify-content-center" style = "border:0px solid black !important; font-size: 17px;font-size: 17px "> <i class="fas fa-search mr-1"></i> Filter </a> 
+        <a href="{% url 'filterClientsDay' user.username %} " class="btn clientsBtn btn-animation-1 mt-2 col-4 col-lg-10 ml-2  font-weight-bold justify-content-center" style = "border:0px solid black !important;font-size: 17px "> <i class="fas fa-calendar-day mr-1"></i> Today </a> 
+        <a href="{% url 'filterClientsWeek' user.username %} " class="btn clientsBtn btn-animation-1 mt-2 col-4 col-lg-10 ml-2 font-weight-bold justify-content-center" style = "border:0px solid black !important; font-size: 17px "> <i class="fas fa-calendar-week mr-1"></i> This week </a>
+        
+        
+       <div class = "col-2 row justify-content-center right-side" style = "background-image:linear-gradient(to left top, white, rgb(235, 235, 235)); margin-left: 0px;">
+     
+    </div> 
+      </div>
   
 
   <!-- <a class="bt more-bt col-1 mt-3 mr-2 p-2" style = "text-decoration:none; height: 20%" href="javascript:void(0)">
@@ -18,30 +25,33 @@
       <p class = "mb-0">add</p>
      </a>  -->
 
-    <div class = "col-8 border-left border-right border-bottom border-info bg-light pt-2 shadow" style = "min-height: 1000px;">
+    <div class = " col-12 col-lg-10 pt-0 pr-0 pl-0  rounded " id = "clientsDiv" style = "min-height: 1000px; background-color: rgb(240, 240, 240);  ">
 
-          <div class= "row justify-content-center col-12 mt-3 mb-2">
-            <h1 class= "alert  d-inline-flex shadow " style = "color:white; background-color:#1769e4"> Clients</h1>
+
+          <div class = "container-fluid pb-2 pl-1 pt-0 mb-2 w-100 rounded" style = " border-bottom: 1px solid grey">
+          <div class= "row  col-12 mt-4 mb-0" id= "H1container" >
+            <h1 class= " ml-3 d-inline-flex  justify-content-center" id = "clientsH1" style = "color:#000000; letter-spacing: 2px; border-radius: 12px;"> FILTERED CLIENTS  </h1>
           </div>
           
-          <hr>
+          </div>
+          
          
           {% for client in clients %}
           
-              <div id = "client-card" class=" card justify-content-center shadow d-inline-block  mb-2 ml-2 bg-light rounded"  >
+              <div id = "client-card" class=" card justify-content-center shadow d-inline-block  mb-2 ml-2 bg-light"  style = "border-radius: 16px;"  >
                 
                 <div class="card-body p-0 rounded ">
                   
                   {% if client.importance >= 8 %}
-                  <div class = "w-100 py-2 m-0 " style = "background-color: #1769e4 ;">
-                      <h4 class="card-title ml-3 mt-2" > {{client.name}} ({{client.importance }}) </h4>
+                  <div class = "w-100 py-1 m-0 rounded" style = "background-color: #205ab1; border: 0px solid black">
+                      <h3 class="card-title ml-3 mt-2 " style = "letter-spacing: 0.5px ;"> {{client.name}}  ({{client.importance }})  </h3>
                   </div>
                   {% else %}
-                  <div class = "w-100 py-2 m-0 " style = "background-color: #1769e4 ;">
-                    <h4 class="card-title ml-3 mt-2" >{{client.name}} ({{client.importance }})</h4>
+                  <div class = "w-100 py-1 m-0 rounded" style = "background-color: #205ab1; border: 0px solid black">
+                    <h3 class="card-title ml-3 mt-2" style = "letter-spacing: 0.5px ;" >{{client.name}} ({{client.importance }})</h3>
                   </div>
                   {% endif %}
-                  <br>
+                  
                   {% if boat.photo %}
                   <div >
                   <img height="130" src="{{ boat.photo.url }}">
@@ -59,14 +69,14 @@
                   
                     <form action = "{% url 'clientDetails' client.name %}" method="post">
                       {% csrf_token %}
-                      <button style = "height: 40px;overflow: hidden; " class = "btn btn-primary ml-2 my-2">  More   </button>       
+                      <button style = "height: 40px;overflow: hidden; font-size: 16px; background-image: linear-gradient(to right,#1b55ac, #5c92e4);; color: white; letter-spacing: 1px;  border-right: 0px solid white; transition: 0.4s" class = "btn ml-2 my-2 btnMobile " > <i class="fas fa-angle-double-right mr-1" style = "margin-top: 4px"></i>  More   </button>       
                     </form>
                       
 
                   <form  action = "{% url 'deleteClient' client.name %}"method="post">
                     {% csrf_token %}
-                    <div class="ml-2 flex p-0" >
-                    <button class="btn btn-danger mb-2 mt-2 " style = "height: 40px;overflow: hidden;"> Delete </button>
+                    <div class="ml-2 flex  p-0" >
+                    <button class="btn mb-2 mt-2 btnMobile " style = "height: 40px;overflow: hidden; font-size: 16px; background-image: linear-gradient(to left, #c04a4a, #a70d0d);; color: white; letter-spacing: 1px; border-right: 0px solid white; transition: 0.4s;"> <i class="fas fa-trash mr-1" style = "margin-top: 4px"></i>  Delete </button> 
                     </div>
                   </form>
     
@@ -86,10 +96,12 @@
         
         
         
-    </div>
-  </div>  
+    
+
+    
+  
 </div>
-       
+
     
     
     

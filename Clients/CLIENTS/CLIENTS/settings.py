@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+import django_heroku
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,23 +28,27 @@ SECRET_KEY = 'ah0$gn#gth7qr8$s&#$aul#o5@7$c7s$^$qgrx57j52o!1-b3$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['yachteasy3.herokuapp.com']
+
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'boats',
-    'clients_app',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'boats',
+    'clients_app',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -83,6 +90,7 @@ DATABASES = {
 }
 
 
+
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -120,10 +128,27 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'staticfiles/media')
+
+django_heroku.settings(locals())
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hicfwgrxb',
+    'API_KEY': '174316256585768',
+    'API_SECRET': 'UVQv-jj5p89IgPmhTUgzUO8ilUM',
+}
+
+
+cloudinary.config( 
+  cloud_name = "hicfwgrxb", 
+  api_key = "174316256585768", 
+  api_secret = "UVQv-jj5p89IgPmhTUgzUO8ilUM" 
+)

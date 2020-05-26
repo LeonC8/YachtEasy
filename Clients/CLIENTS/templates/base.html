@@ -736,6 +736,17 @@
   color: rgb(255, 255, 255)
 }
 
+#boat-card{
+  color: black;
+  margin-left: 15px !important;
+}
+
+#boat-card .card-title{
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
+
+
 .list-group-item{
   min-height: 50px;
 }
@@ -748,11 +759,13 @@
     text-decoration: none;
 }
 .nav-link{
-  font-size:1.5em !important;
+  font-size:1.6em !important;
   color: white !important;
+  margin-right: 12px !important;
+  transition-duration: 0.35s;
 }
 .nav-link:hover{
-  font-size:1.5em !important;
+  
   color: rgb(192, 192, 192) !important;
   text-shadow: 1px 1px #0000008a;
   
@@ -760,6 +773,7 @@
 
 a{
   color: white !important;
+  letter-spacing: 0.5px ;
 }
 
 .list-group-item{
@@ -776,6 +790,237 @@ input{
   font-size: 17px
 }
 
+.clientsBtn{
+  background-image: linear-gradient(to right,#104391, #5389db) ;
+  padding-top: auto !important;
+  padding-bottom: auto !important;
+  
+}
+
+.logoutBtn{
+  
+  padding-top: auto !important;
+  padding-bottom: auto !important;
+  
+}
+
+
+
+input{
+  box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); 
+  border-radius: 12px;
+}
+
+
+
+
+@media (max-width: 992px) {
+  
+  #clientsDiv{
+    border: 0px solid white !important;
+    margin-left: 0px;
+    padding: 0px;
+    box-shadow: 0px 0px white !important;
+  };
+  #body{
+    padding: 0px
+  }
+
+  .buttonsContainer{
+  padding-left: 3px;
+  padding-bottom: 17px !important;
+}
+
+.buttonsContainerBoats{
+  padding-left: 3px;
+  padding-bottom: 5px !important;
+}
+
+#comContainer{
+  margin-top: 0px !important; 
+  padding-right: 35px; 
+}
+.comCard{
+  text-align: center !important;
+  margin-top: 0px !important; 
+  margin-left: 14px !important;
+}
+#clientsDiv{
+  padding-top: 0px !important;
+  margin-top: 0px !important;
+}
+#H1container{
+  margin-top: 0px !important;
+}
+
+.nav-link{
+  font-size:2.7em !important;
+  color: white !important;
+  margin-right: 12px !important;
+  transition-duration: 0.35s;
+}
+
+.navbar-brand{
+  font-size: 60px !important;
+}
+
+.navbar-toggler{
+  margin-right: 27px;
+}
+.navbar-toggler-icon{
+  font-size: 55px;
+  
+}
+
+.logoutBtn{
+  
+  font-size: 37px !important;
+  padding-top: 22px !important;
+  
+}
+
+.clientsBtn{
+  background-image: linear-gradient(to right,#104391, #5389db) !important;
+  font-size: 37px !important;
+  padding-top: 22px !important;
+}
+
+#plusIcon{
+  font-size: 32px !important;
+}
+
+.card-title{
+  font-size: 53px !important;
+}
+
+.card-text{
+  font-size: 32px !important;
+}
+
+.btnMobile{
+  font-size: 35px !important;
+  height: 72px !important;
+  border-radius: 9px !important;
+  
+}
+
+#clientsH1{
+  font-size: 65px !important;
+  margin-top: 13px !important;
+ 
+}
+
+.boatDetailsContainer{
+  margin-left: auto !important;
+}
+input{
+  font-size: 35px;
+}
+.input-group-text{
+  font-size: 35px !important;
+}
+#editBoat{
+  font-size: 35px !important;
+}
+#mainBoatImage{
+  height: 250px !important;
+}
+i{
+  font-size: 35px !important;
+}
+h3{
+  font-size: 55px !important;
+  margin-bottom: 15px !important;
+}
+
+h2{
+  font-size: 55px !important;
+  margin-bottom: 15px !important;
+}
+
+p{
+  font-size: 43px !important;
+}
+
+.brandIcon{
+  font-size: 50px !important;
+}
+.navbar{
+  margin-bottom: 10px !important;
+}
+
+#form{
+  width: 100% !important;
+}
+.formContainer{
+  min-width: 890px;
+  margin-left: 22px !important;
+  margin-top: 0px !important;
+}
+.navbar{
+  margin-bottom: 0px !important;
+}
+
+#addClient{
+  font-size: 50px !important;
+}
+
+.clientCard{
+  width: 47% !important;
+  
+}
+
+.searchInput{
+  font-size: 40px !important;
+}
+
+.searchBtn{
+  height: 75px !important;
+  padding-top: 14px !important;
+  margin-left: 10px !important;
+}
+
+.searchIcon{
+  font-size: 40px !important;
+}
+
+#client-card{
+  height: 510px !important;
+  margin-top: 18px !important;
+}
+
+#boat-card{
+  height: 845px !important;
+  margin-top: 18px !important;
+  
+
+}
+
+.editInfoBtn{
+  height: 65px !important;
+  font-size: 30px !important;
+}
+
+}
+@media (max-width: 768px) {
+
+
+
+ 
+.clientsBtn{
+  background-image: linear-gradient(to right,#104391, #5389db) !important;
+  
+}
+
+
+
+}
+
+@media (max-width: 576px) {
+  
+  
+}
+
 
 
     </style>
@@ -787,69 +1032,60 @@ input{
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>{% block title %}{% endblock %}</title>
   </head>
-  <body class = "mb-5 p-0" style = "background-color: #ffffffd0; font-family: candara"> <!-- other font: candara -->
-    <nav class="navbar navbar-expand-lg navbar-light pt-3 pb-0" style = "background-color: #444c58;border-bottom: 1px solid black; padding-right: 12px"> 
-      <a class="navbar-brand   rounded font-weight-bold mb-4 ml-3 mr-5 " style = "font-size:30px; color:whitesmoke!important;background-color: #444c58; text-decoration: underline ; letter-spacing: 0.5px;" href="{%url 'home' %}" ><div class="py-1 px-3"><i class="fas fa-anchor mr-2 mb-0"></i> <i> YachtEasy </i>  </div></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+  {% load cloudinary %}
+  <body class = "mb-0 pb-0 pt-0 pl-0 pr-0" id = "body" style = "background-color: #ffffffd0; font-family: candara;  "> <!-- other font: candara -->
+    <div class = "sticky-top">
+    <nav class="navbar  navbar-expand-lg navbar-dark pt-3 pb-0" style = "background-color: #41454d; padding-right: 12px; color: white !important"> 
+      <a class="navbar-brand   rounded font-weight-bold mb-4 ml-3 mr-5 " style = "font-size:30px; color:whitesmoke!important;  ; letter-spacing: 0.5px;" href="{%url 'home' %}" ><div class="py-1 px-3"><i class="fas fa-anchor brandIcon mr-2 mb-0"></i> YachtEasy  </div></a>
+      <button class="navbar-toggler" style = "color :white !important" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" style = "color :white" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" style = "color :white !important"></span>
       </button>
 
       
-    
-      <div class="collapse navbar-collapse ml-5" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active mb-1 ">
-            <a class="nav-link" href="{%url 'home' %}"> Clients <span class="sr-only">(current)</span></a>
+      
+      <div class="collapse navbar-collapse ml-5" id="navbarSupportedContent" style = "color:white">
+        <ul class="navbar-nav mr-auto" >
+          <li class="nav-item active mb-1 pl-0">
+            <a class="nav-link pl-0" href="{%url 'home' %}"> Clients <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item mb-1">
 
             <a class="nav-link" href = "{% url 'boatsHome' user.username %}"> Boats </a>
           </li>
 
-          <li class="nav-item mb-1">
-
-            <a class="nav-link mb-3" > Todo </a>
-          </li>
 
           <li class="nav-item mb-1">
 
-            <a class="nav-link" > Profile </a>
+            <a class="nav-link" href = "{%url 'profile' user.username %}" > Profile </a>
           </li>
 
-          <li class="nav-item dropdown mb-1">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
+         
 
         </ul>
 
     
           
         {% if clients %}
-        <form action = "{% url 'filterClients2' user.username %}" class="form-inline my-2 mr-0 my-lg-0" method = "POST">
-          <input class="form-control mr-sm-2" type="text" name = "name" placeholder="Search" aria-label="Search">
-          <button class="btn  font-weight-bold my-2 my-sm-0" style = "height:2.75em; color:white; background-color: #1769e4  ; border-color: black;" type="submit"> <i class="fas fa-search mt-2"></i> </button>
+        <form action = "{% url 'filterClients2' user.username %}" class="form-inline my-2 mr-0 ml-0 my-lg-0 col-lg-4 pl-0" method = "POST">
+          <input class="form-control col-8 mr-2 col-lg-10 ml-0 searchInput" type="text" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 8px;" name = "name" placeholder="Search" aria-label="Search">
+          <button class="btn  searchBtn font-weight-bold my-2 my-sm-0" style = "height:2.5em; color:white; background-color: #1b55ac ; border-color: black;" type="submit"> <i class="fas fa-search searchIcon mt-1"></i> </button>
         </form>
       </div>
         {% endif %}
 
         {% if boats %}
         <form action = "{% url 'filterBoats2' user.username %}" class="form-inline my-2 mr-0 my-lg-0" method = "POST">
-          <input class="form-control mr-sm-2" type="text" name = "boat_name" placeholder="Search" aria-label="Search">
-          <button class="btn  font-weight-bold my-2 my-sm-0" style = "height:2.75em; color:white; background-color: #1769e4  ; border-color: black;" type="submit"> <i class="fas fa-search mt-2"></i> </button>
+          <input class="form-control mr-2 col-8 col-lg-10 searchInput" type="text" name = "model" placeholder="Search" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 8px;" aria-label="Search">
+          <button class="btn searchBtn font-weight-bold my-2 my-sm-0" style = "height:2.5em; color:white; background-color: #1b55ac  ; border-color: black;" type="submit"> <i class="fas fa-search searchIcon mt-2"></i> </button>
         </form>
       </div>
         {% endif %}
     </nav>
     
-      
+  
+  
+  </div>
+
           {% block content %}
           
           

@@ -1,13 +1,24 @@
 {% extends 'base.html' %}
-            
+{% load cloudinary %}
 {% block content %}
 
 <div class="container-fluid" >
-    <div class="row ">
+    <div class="row">
   
-      <div class=" col-2 ">
-        <a href="{% url 'addBoat' user.username %} " style = "border:1px solid black !important;background-color: #1769e4; font-size: 17px " class="btn btn-animation-1 font-weight-bold  mt-2 w-75 ml-4"> <i class="fas fa-plus mr-1" > </span></i> Add Boat  </a> 
-      </div>
+      
+
+      <div class=" col-12 col-lg-2  pb-0  pr-2 left-side buttonsContainerBoats " style = " border: 0px solid white;background-color: rgb(243, 243, 243);">
+      
+      
+        <a href="{% url 'addBoat' user.username %} " class="btn clientsBtn btn-animation-1  mt-2 col-4 col-lg-10 ml-2 font-weight-bold" style = "border:0px solid black !important;; font-size: 17px "> <span style = "font-size : 14px">  <i class="fas fa-plus mr-1" id ="plusIcon" > </i> </span>  Add Boat</a> 
+          <a href="{% url 'filterBoats' user.username %} " class="btn clientsBtn btn-animation-1 mt-2 col-4 col-lg-10 ml-2 shadow font-weight-bold justify-content-center" style = "border:0px solid black !important; font-size: 17px;font-size: 17px "> <i class="fas fa-search mr-1"></i> Filter </a> 
+          
+
+          
+        </div>
+    
+       
+      
     
   
     <!-- <a class="bt more-bt col-1 mt-3 mr-2 p-2" style = "text-decoration:none; height: 20%" href="javascript:void(0)">
@@ -15,58 +26,62 @@
         <p class = "mb-0">add</p>
        </a>  -->
   
-      <div class = "col-8 border-left border-right border-bottom border-dark bg-light pt-2 shadow" style = "min-height: 1000px;">
-  
-            <div class= "row justify-content-center col-12 mt-3 mb-2">
-              <h1 class= "alert shadow w-50  " style = "color:white; background-color: #1769e4;text-align: center; border: 1px solid black; border-radius: 12px"> <i class="fas fa-anchor mr-3 " style = "margin-top: 3px;"></i> MY BOATS </h1>
-            </div>
+      <div class = "  col-12 col-lg-10 pt-0 pr-0 pl-0  rounded" id = "clientsDiv" style = "min-height: 1000px;background-color: rgb(243, 243, 243);">
+      
+        <div class= "container-fluid mb-2" style = "border-bottom: 1px solid grey">
+        <div class= "row  col-12 mt-3 mb-0" >
+          <h1 id = "clientsH1" class= " ml-2 d-inline-flex  justify-content-center" style = "color:#000000; letter-spacing: 2px; border-radius: 12px;"> ALL BOATS  </h1>
+         
+        </div>
+        </div>
+        
             
-            
-           
+            {% if boats %}
             {% for boat in boats %}
             
-                <div id = "client-card" class="card justify-content-center shadow d-inline-block  mb-2 ml-2 bg-light rounded" >
+                <div id = "boat-card" class="card justify-content-center shadow d-inline-block  mb-2 ml-2 bg-light " style = "border-radius: 16px !important; ">
                   
-                  <div class="card-body p-0 rounded ">
+                  <div class="card-body p-0 ">
                     
                    
                     
-                    <div class = "w-100 py-0 m-0 rounded" style = "background-color: #3d76cb;border: 1px solid black">
-                      <h4 class="card-title ml-3 mt-2" >{{boat.boat_name}} </h4>
+                    <div class = "w-100 py-3 pl-3 m-0 " style = "background-image: linear-gradient(to right,#104391, #5389db); border-top-right-radius: 16px; border-top-left-radius: 16px">
+                      <h4 class="card-title  ml-2 mt-1 my-lg-0 ml-lg-0 " > {{boat.model }} </h4>
                     </div>
                     
   
                     {% if boat.photo %}
                     <div >
-                        <img height="130" src="{{ boat.photo.url }}">
+                        <img id= "mainBoatImage" height = "165" src="{{ boat.photo.url }}">
+                      <!--  {% cloudinary boat.photo  height=165 quality="100"  %} -->
                     </div>
                     {% endif %}
                     
                     <ul class="list-group list-group-flush "></ul>
                       
                       
-                      <li class="list-group-item"><p class="card-text">Owner : {{boat.user.username}} </p></li>
-                      <li class= "list-group-item"><p class= "card-text"> {{ boat.boat_description }}</p></li>
-                      <li class= "list-group-item"><p class= "card-text"> {{ boat.brand }}</p></li>
-                      <li class= "list-group-item"><p class= "card-text"> {{ boat.year }}</p></li>
+                      <li class="list-group-item pl-4 pl-lg-3"><p class="card-text "> <b> Owner : </b>{{boat.owner}} </p></li>
+                      <li class= "list-group-item pl-4 pl-lg-3"><p class= "card-text  "> <b> Brand: </b>{{ boat.brand }}</p></li>
+                      <li class= "list-group-item pl-4 pl-lg-3 "><p class= "card-text  "> <b> Feet:  </b>{{ boat.size }}</p></li>
+                      <li class= "list-group-item pl-4 pl-lg-3"><p class= "card-text  "> <b> Year: </b>{{ boat.year }}</p></li>
                     </ul>
   
                     
-                      <form  action="{% url 'boat_details' user.username boat.boat_name %}" method="post">
-                        {% csrf_token %}
-                        <button style = "height: 40px;overflow: hidden;font-size: 16px; background-color: #3d76cb; color: white; letter-spacing: 1px; " class = "btn btn-primary ml-2 my-2"> <i class="fas fa-angle-double-right mr-1" style = "margin-top: 4px"></i>  More  </button>       
-                      </form>
-                        
-                      
-        
-                    <form action = "{% url 'deleteBoat' user.username boat.boat_name%}" method="post" >
-                      {% csrf_token %}
-                      <div class="ml-2 flex p-0" >
-                      <button class="btn btn-danger mb-2 mt-2 " style = "height: 40px;overflow: hidden;font-size: 16px;  color: white; letter-spacing: 1px;"> <i class="fas fa-trash mr-1" style = "margin-top: 4px"></i>Delete </button>
-                      </div>
-                    </form>
+                     
       
-                    
+                    <form action="{% url 'boat_details' user.username boat.model  %}" method="POST" class = "mt-2">
+                      {% csrf_token %}
+                      <input type = "hidden" value = "{{ user.username }}" name= "username" >
+                      <button class = "btn  ml-3 ml-lg-2  my-2 btnMobile " style = "height: 42px;overflow: hidden; font-size: 17px; background-image: linear-gradient(to right,#234e8d, #346ab9);; color: white; letter-spacing: 1px;  border-right: 0px solid white; transition: 0.4s"  > <i class="fas fa-angle-double-right mr-1" style = "margin-top: 4px"></i>  More   </button>       
+                    </form>
+                      
+
+                  <form  action = "{% url 'deleteBoat' user.username boat.model %}" method="post">
+                    {% csrf_token %}
+                    <div class="ml-0 flex  p-0" >
+                    <button class="btn ml-3 ml-lg-2 mb-2 mt-2 btnMobile " style = "height: 42px;overflow: hidden; font-size: 17px; background-image: linear-gradient(to left, #ac3c3c, #a70d0d);; color: white; letter-spacing: 1px; border-right: 0px solid white; transition: 0.4s;"> <i class="fas fa-trash mr-1" style = "margin-top: 4px"></i>  Delete </button> 
+                    </div>
+                  </form>
                                 
                     
                   </div>
@@ -78,14 +93,12 @@
               
           
           {% endfor %} 
-  
+          {% endif %}
           
           
       </div>
 
-      <div class = "col-2 row justify-content-center right-side">
-        <a class= "btn btn-danger mt-2 ml-5 " style = "color:white!important; font-size: 17px; letter-spacing: 0.8px; font-weight: 550; border: 1px solid black" href="{% url 'logout' %}"> <i class="fas fa-sign-out-alt mr-2" style = "margin-top: 4px"></i> Logout</a>
-      </div> 
+     
     </div>  
   </div>
          

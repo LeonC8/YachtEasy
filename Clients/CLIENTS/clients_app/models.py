@@ -2,6 +2,7 @@ from django.db import models
 from django.forms import ModelForm
 from django.contrib import admin
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 # Create your models here.
 
 class Client(models.Model):
@@ -19,9 +20,16 @@ class Client(models.Model):
     look2 = models.CharField(max_length=500, null= True)
     budget = models.IntegerField( null= True)
     first_contact = models.CharField(max_length=1000, null= True)
-    to_contact = models.CharField(max_length=500, null= True)
+    to_contact = models.DateField(null = True)
+    to_contact_text = models.CharField(max_length = 1000, null = True)
     communication = models.CharField(max_length=5000, null= True)
     importance = models.IntegerField( null= True)
+
+
+class clientFile(models.Model):
+    clients = models.ManyToManyField(Client)
+    clientFile = CloudinaryField(folder = 'clientFiles', resource_type = "raw",null = True)
+    
 
 class ClientForm(ModelForm):
     class Meta:

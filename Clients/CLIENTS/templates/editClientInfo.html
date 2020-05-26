@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class = "container-fluid pt-3 pb-3" style = "background-image: linear-gradient(to right,#104391, #5389db) ">
+        
+
+    
+    
+      
+    
+    <!--===============================================================================================-->
+      <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+      <script src="vendor/bootstrap/js/popper.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+      <script src="vendor/select2/select2.min.js"></script>
+      <script>
+        $(".selection-2").select2({
+          minimumResultsForSearch: 20,
+          dropdownParent: $('#dropDownSelect1')
+        });
+      </script>
+    <!--===============================================================================================-->
+      <script src="js/main.js"></script>
+    
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-23581568-13');
+    </script>
+    <div class = "container-fluid">
+    <div class = "row col-12 w-100 justify-content-center">
+    <div class="container col-11 m-0 pt-4 pb-4 shadow-lg formContainer justify-content-center"  style = "  border-radius: 17px !important; box-shadow: inset 0px 0px 10px 5px hsla(0, 0%, 0%, 0.12); margin-right: 0px !important;" >
+      <form action = "{% url 'editClientInfo2' user.username %}" class= "col-12 w-100"  method="POST" id= "form" enctype="multipart/form-data" >
+        
+        {% csrf_token %}
+        <input type = "hidden" value = "{{client.id}}" name = "id">
+        <div class="row" id = "editClientRow">
+          
+          <h3 style = "color:rgb(22, 22, 22) !important; "> Edit only neccessary information: </h3>
+          <div class="input-group input-group-icon">
+            <i class="fas fa-user input-icon " style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" value = "{{client.name}}" class = " " name = "name" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;";/>
+            
+          </div>
+          
+          <div class="input-group input-group-icon">
+            <i class="fas fa-phone input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" value = "{{client.phone}}" name = "phone" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12);border-radius: 12px;"/>
+            
+          </div>
+
+          <div class="input-group input-group-icon">
+            <i class="fas fa-envelope input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="email" value = "{{client.email}}" name = "email" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12);border-radius: 12px;"/>
+            
+          </div>
+        </div>
+        
+        <div class="row">
+          
+          <div class="input-group input-group-icon">
+            <i class="fas fa-flag input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" placeholder="State" value = "{{client.state}}" name = "state" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
+            
+          </div>
+          <h3 style = "color:rgb(22, 22, 22) "> Boat </h3>
+          <div class="input-group input-group-icon">
+            <i class="fas fa-ship input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" placeholder="Brand" value = "{{client.brand}}"name = "brand" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
+          
+          </div>
+
+          <div class="input-group input-group-icon">
+            <i class="fas fa-ship input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" placeholder="Model" value = "{{client.model}}"name = "model" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
+            
+          </div>
+          
+
+        </div><div class="row">
+          
+          <div class="input-group input-group-icon">
+            <i class="fas fa-calendar input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" placeholder="Year" value = "{{client.year}}" name = "year" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
+            
+          </div>
+
+          <div class="input-group input-group-icon">
+            <i class="fas fa-map-marked-alt input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" placeholder="Location" value = "{{client.location}}" name = "location" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
+            
+          </div>
+          <h3 style = "color:rgb(22, 22, 22) "> Communication </h3>
+          <div class="input-group input-group-icon">
+            <i class="fas fa-edit input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" placeholder="Description" value = "{{client.description}}" name = "description" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
+            
+          </div>
+          
+
+        </div>
+        <div class="row">
+         
+          <div class="input-group input-group-icon">
+            <i class="fas input-icon" style = "color: #1d54a7; font-size: 17px"> 1 </i>
+            <input type="text" placeholder="First priority" value = "{{client.look1}}" name = "look1" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
+            
+          </div>
+
+          <div class="input-group input-group-icon">
+            <i class="fas  input-icon" style = "color: #1d54a7; font-size: 17px"> 2 </i>
+            <input type="text" placeholder="Second priority" value = "{{client.look2}}"name = "look2" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
+            
+          </div>
+
+          <div class="input-group input-group-icon">
+            <i class="fas fa-comments-dollar input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="number" placeholder="Budget" value = "{{client.budget}}" name = "budget" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
+          </div>
+        </div>
+
+          <div class="row" >
+            
+            <div class="input-group input-group-icon">
+              <i class="fas fa-comment input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+              <input type="text" placeholder="First contact" value = "{{client.first_contact}}" name = "first_contact" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
+              
+            </div>
+
+            <div class="input-group input-group-icon">
+              <i class="fas fa-bell input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+              <input type="date" value = "{{to_contact}}" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"  />
+              
+            </div>
+
+            <div class="input-group input-group-icon">
+              <i class="fas fa-bell input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+              <input type="text" placeholder="Notes for contacting" value = "{{client.to_contact_text}}" name = "to_contact_text" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
+            </div>
+
+            <div class="input-group input-group-icon">
+              <input type="text" placeholder="Communication"  value = "{{client.communication}}" name = "communication" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
+              <i class="fas fa-comments input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            </div>
+
+            <h3 style = "color:rgb(22, 22, 22) "> Add more files </h3>
+            <div class="input-group input-group-icon">
+              <input type="file" placeholder="Files" name = "files" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"  multiple/>
+              <i class="fas fa-file-alt input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            </div>
+
+          </div>
+
+          
+          
+          
+        <div class = "row">
+            <h3 style = "color:rgb(22, 22, 22) ;"> Importance</h3>
+            
+            <div class="input-group input-group-icon">
+              <input type="number" min= "0" max = "10"  placeholder="Importance" value = "{{client.importance}}" name = "importance" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12);border-radius: 12px;"/>
+              <i class="fas fa-exclamation input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            </div>
+          
+        </div>
+        
+        <div class = "row justify-content-center"> 
+        
+        <input style = "background-image: linear-gradient(to right,#1da128, #82ec8d); color: rgb(22, 22, 22) !important; border-radius: 12px; font-weight: bold; font-size: 27px ; border-right: 0px solid white; box-shadow: 0px 2px 3px 0px rgba(136, 136, 136, 0.726);" class= "btn  mb-2  btn-animation-1  mt-2 w-100 ml-0 " id = "addClient"  type= "submit" value= "Edit information" class="col-8" /> 
+        
+        </div>
+
+      </form>
+    </div>
+    </div>
+    
+    </div>
+    </div>
+{% endblock %}

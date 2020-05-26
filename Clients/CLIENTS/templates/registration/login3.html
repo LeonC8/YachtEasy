@@ -1,0 +1,39 @@
+<!-- templates/registration/login.html -->
+<h2> Dont have an account? Sign Up</h2>
+<form action= "{% url 'addUser' %}" method="POST">
+
+  {% csrf_token %}
+
+  
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class=" input-group-text"> Username </span>
+    </div>
+    <input type= "text" name="username" />
+  </div>
+
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class=" input-group-text"> Password </span>
+    </div>
+    <input  type= "text" name="password"/>
+  </div>
+
+  <input class= "btn btn-primary" type= "submit" value= "Sign up" class="col-12" />
+
+</form>
+
+<h2>Login</h2>
+<form method="post" >
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Login</button>
+  <a href="{% url 'login' %}">logout</a>
+</form>
+
+<hr>
+
+
+<hr>

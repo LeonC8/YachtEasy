@@ -1,18 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<div class= "row col-12 mt-3 ml-3 ">
-  <h2 class = "alert rounded-pill shadow mb-4 " style = "background-color: #1769e4; min-width: 450px;text-align: center; font-size: 40px;color: white; border: 1px solid black; margin-left: 495px"  > {{ client.name }}</h2>
-  <form action = "{% url 'clientDetails' client.name %}" method="post" class ="ml-4" style = "margin-top: 22px">
+<div class = "container-fluid">
+<div class= "row col-12 mt-3 ml-0 justify-content-left pl-1">
+  <h2 class = "alert rounded-pill shadow-lg mb-4 col-5 col-lg-3 display-inline" style = "background-image: linear-gradient(to right,#164b99, #74a4eb) ; border-right: 0px solid white;  font-weight: bold;text-align: center; font-size: 40px;color: whitesmoke;"  > {{ client.name }}</h2>
+  <form action = "{% url 'editClientInfo' client.name %}" method="post" class ="ml-4 display-inline" style = "margin-top: 22px">
     {% csrf_token %}
-    <button style = "height: 40px;overflow: hidden; font-size: 16px; background-color: #c53d07; color: white; letter-spacing: 1px; " class = "btn ml-2 my-2" > <i class="fas fa-edit mr-1" style = "margin-top: 4px"></i> Edit information </button>       
+    <input type= "hidden" name= "username" value = "{{user.username}}">
+    <button style = "height: 40px;overflow: hidden; font-size: 16px; font-weight: bold; transition: 0.4s; border-right: 0px solid white;; background-color: #c53d07; color: white; letter-spacing: 1px; " class = "btn ml-2 col-12 display-inline editInfoBtn" > <i class="fas fa-edit mr-1" style = "margin-top: 4px"></i> Edit information </button>       
   </form>
 </div>
+</div>
 
-
-<div class = "row col-12  ">
-<div class = "card shadow rounded  col-3 ml-4 mr-2" style = "color:rgb(255, 255, 255); background-color: #3d76cb;">
+<div class = "container-fluid">
+<div class = "row col-12  justify-content-left ">
+<div class = "card shadow rounded  col-12 col-lg-3 ml-2 mr-2 mb-2" style = "color:rgb(255, 255, 255); background-color: #3d76cb;">
   
   <div class = "card-body justify-content-center font-weight-bold" style = "text-align: center;">
     <div class = "card-title" style = "text-align: center;font-size: 32px; color: white!important; font-weight: bolder !important">
@@ -30,9 +32,9 @@
 </div>
 
 
-<div class = "card shadow rounded col-3 display-inline ml-2 mr-2" style = "color:rgb(255, 255, 255); background-color: #3d76cb;">
+<div class = "card shadow rounded col-12 col-lg-3 display-inline ml-2 mr-2 mb-2" style = "color:rgb(255, 255, 255); background-color: #3d76cb;">
   
-  <div class = "card-body justify-content-center font-weight-bold" style = "text-align: center;">
+  <div class = "card-body justify-content-center font-weight-bold " style = "text-align: center;">
     <div class = "card-title" style = "text-align: center;font-size: 30px">
       Boat
     </div>
@@ -48,7 +50,7 @@
 </div>
 
 
-<div class = "card shadow rounded col-3 display-inline ml-2 mr-2" style = "color:rgb(255, 255, 255); background-color: #3d76cb;">
+<div class = "card shadow rounded col-12 col-lg-3 display-inline ml-2 mr-2 mb-2" style = "color:rgb(255, 255, 255); background-color: #3d76cb;">
   
   <div class = "card-body justify-content-center font-weight-bold" style = "text-align: center;">
     <div class = "card-title" style = "text-align: center;font-size: 30px">
@@ -70,8 +72,8 @@
 
 
 
-<div class = "row col-12 mt-3">
-  <div class = "card shadow rounded  col-9 ml-5 mr-2" style = "color:rgb(255, 255, 255); background-color: #3d76cb;">
+<div class = "row col-12 mt-3 justify-content-left pl-4" id = "comContainer"> 
+  <div class = "card shadow rounded  col-12 col-lg-9 ml-4 mr-2 mb-3 comCard " style = "color:rgb(255, 255, 255); background-color: #3d76cb;">
   
     <div class = "card-body font-weight-bold" >
       <div class = "card-title" style = "font-size: 30px">
@@ -84,9 +86,27 @@
       To contact : {{ client.to_contact}}
       <br>
       Communication : {{ client.communication }}
+      <br>
+      
+
+        {% if files %}
+
+        Files: 
+
+        {% for file in files %}
+        <br>
+        <a href="{{ file.clientFile.url }}" download="{{ file.clientFile.url }}"> {{ file.clientFile }}</a>
+        {% endfor %}
+
+        {% endif %}
+
+
+      
+      
       </p>
     </div>
   </div>
+</div>
 </div>
 
 <!--

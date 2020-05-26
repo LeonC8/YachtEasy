@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-        <div class= "row justify-content-center col-12 pr-0 pl-0 w-100 mx-0">
-          <h2 class="alert  d-inline-flex mb-2 mt-2 w-25 justify-content-center " style = "background-color: #1769e4  ; color: white; border: 1px solid black"> <i class="fas fa-address-card mr-3"></i>   Add client: </h2>
-        </div>
+<div class = "container-fluid pt-3 pb-3" style = "background-image: linear-gradient(to right,#104391, #5389db) ">
+        
 
     
     
@@ -34,30 +33,31 @@
     
       gtag('config', 'UA-23581568-13');
     </script>
-    
-    <div class="container col-12 px-5 shadow-lg"  style = "border: 1px solid; border-color:  #3d76cb">
-      <form action = "{% url 'addClient2' user.username %}" method="POST" >
+    <div class = "container-fluid">
+    <div class = "row col-12 w-100 justify-content-center">
+    <div class="container col-11 m-0 pt-4 pb-4 shadow-lg formContainer justify-content-center"  style = "  border-radius: 17px !important; box-shadow: inset 0px 0px 10px 5px hsla(0, 0%, 0%, 0.12); margin-right: 0px !important;" >
+      <form action = "{% url 'addClient2' user.username %}" class= "col-12 w-100"  method="POST" id= "form" enctype="multipart/form-data" >
         
         {% csrf_token %}
 
         <div class="row">
           
-          <h3 style = "color:black!important; "> Basic info </h3>
+          <h3 style = "color:rgb(22, 22, 22) !important; "> New Client </h3>
           <div class="input-group input-group-icon">
-            <i class="fas fa-user input-icon" style = "color: #3d76cb; font-size: 17px"></i>
-            <input type="text" placeholder="Full Name" name = "name"/>
+            <i class="fas fa-user input-icon " style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" placeholder="Full Name" class = " " name = "name" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;";/>
             
           </div>
           
           <div class="input-group input-group-icon">
-            <i class="fas fa-phone input-icon" style = "color: #3d76cb; font-size: 17px"></i>
-            <input type="text" placeholder="Phone" name = "phone"/>
+            <i class="fas fa-phone input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" placeholder="Phone" name = "phone" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12);border-radius: 12px;"/>
             
           </div>
 
           <div class="input-group input-group-icon">
-            <i class="fas fa-envelope input-icon" style = "color: #3d76cb; font-size: 17px"></i>
-            <input type="email" placeholder="Email" name = "email"/>
+            <i class="fas fa-envelope input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="email" placeholder="Email" name = "email" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12);border-radius: 12px;"/>
             
           </div>
         </div>
@@ -65,20 +65,20 @@
         <div class="row">
           
           <div class="input-group input-group-icon">
-            <i class="fas fa-flag input-icon" style = "color: #3d76cb; font-size: 17px"></i>
-            <input type="text" placeholder="State" name = "state"/>
+            <i class="fas fa-flag input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" placeholder="State" name = "state" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
             
           </div>
-          <h3 style = "color:black;"> Boat </h3>
+          <h3 style = "color:rgb(22, 22, 22) "> Boat </h3>
           <div class="input-group input-group-icon">
-            <i class="fas fa-ship input-icon" style = "color: #3d76cb; font-size: 17px"></i>
-            <input type="text" placeholder="Brand" name = "brand"/>
+            <i class="fas fa-ship input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" placeholder="Brand" name = "brand" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
           
           </div>
 
           <div class="input-group input-group-icon">
-            <i class="fas fa-ship input-icon" style = "color: #3d76cb; font-size: 17px"></i>
-            <input type="text" placeholder="Model" name = "model"/>
+            <i class="fas fa-ship input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" placeholder="Model" name = "model" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
             
           </div>
           
@@ -86,20 +86,20 @@
         </div><div class="row">
           
           <div class="input-group input-group-icon">
-            <i class="fas fa-calendar input-icon" style = "color: #3d76cb; font-size: 17px"></i>
-            <input type="text" placeholder="Year" name = "year"/>
+            <i class="fas fa-calendar input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" placeholder="Year" name = "year" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
             
           </div>
 
           <div class="input-group input-group-icon">
-            <i class="fas fa-map-marked-alt input-icon" style = "color: #3d76cb; font-size: 17px"></i>
-            <input type="text" placeholder="Location" name = "location"/>
+            <i class="fas fa-map-marked-alt input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" placeholder="Location" name = "location" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
             
           </div>
-          <h3 style = "color:black;"> Communication </h3>
+          <h3 style = "color:rgb(22, 22, 22) "> Communication </h3>
           <div class="input-group input-group-icon">
-            <i class="fas fa-edit input-icon" style = "color: #3d76cb; font-size: 17px"></i>
-            <input type="text" placeholder="Description" name = "description"/>
+            <i class="fas fa-edit input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" placeholder="Description" name = "description" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
             
           </div>
           
@@ -108,58 +108,77 @@
         <div class="row">
          
           <div class="input-group input-group-icon">
-            <i class="fas input-icon" style = "color: #3d76cb; font-size: 17px"> 1 </i>
-            <input type="text" placeholder="Look1" name = "look1"/>
+            <i class="fas input-icon" style = "color: #1d54a7; font-size: 17px"> 1 </i>
+            <input type="text" placeholder="Look1" name = "look1" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
             
           </div>
 
           <div class="input-group input-group-icon">
-            <i class="fas  input-icon" style = "color: #3d76cb; font-size: 17px"> 2 </i>
-            <input type="text" placeholder="Look2" name = "look2"/>
+            <i class="fas  input-icon" style = "color: #1d54a7; font-size: 17px"> 2 </i>
+            <input type="text" placeholder="Look2" name = "look2" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
             
           </div>
 
           <div class="input-group input-group-icon">
-            <i class="fas fa-comments-dollar input-icon" style = "color: #3d76cb; font-size: 17px"></i>
-            <input type="number" placeholder="Budget" name = "budget"/>
+            <i class="fas fa-comments-dollar input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="number" placeholder="Budget" name = "budget" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
           </div>
         </div>
 
           <div class="row" >
             
             <div class="input-group input-group-icon">
-              <i class="fas fa-comment input-icon" style = "color: #3d76cb; font-size: 17px"></i>
-              <input type="text" placeholder="First contact" name = "first_contact"/>
+              <i class="fas fa-comment input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+              <input type="text" placeholder="First contact" name = "first_contact" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
               
             </div>
 
             <div class="input-group input-group-icon">
-              <i class="fas fa-bell input-icon" style = "color: #3d76cb; font-size: 17px"></i>
-              <input type="text" placeholder="To contact" name = "to_contact"/>
+              <i class="fas fa-bell input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+              <input type="date" name = "to_contact" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"  />
               
             </div>
 
             <div class="input-group input-group-icon">
-              <input type="text" placeholder="Communication" name = "communication"/>
-              <i class="fas fa-comments input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+              <i class="fas fa-bell input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+              <input type="text" placeholder="Notes for contacting" name = "to_contact_text" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
             </div>
+
+            <div class="input-group input-group-icon">
+              <input type="text" placeholder="Communication" name = "communication" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
+              <i class="fas fa-comments input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            </div>
+
+            <div class="input-group input-group-icon">
+              <input type="file" placeholder="Files" name = "files" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"  multiple/>
+              <i class="fas fa-file-alt input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            </div>
+
           </div>
+
+          
           
           
         <div class = "row">
-            <h3 style = "color:black;"> Importance</h3>
+            <h3 style = "color:rgb(22, 22, 22) ;"> Importance</h3>
             
             <div class="input-group input-group-icon">
-              <input type="number" placeholder="Importance" name = "importance"/>
-              <i class="fas fa-exclamation input-icon" style = "color: #3d76cb; font-size: 17px"></i>
+              <input type="number" min= "0" max = "10" placeholder="Importance" name = "importance" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12);border-radius: 12px;"/>
+              <i class="fas fa-exclamation input-icon" style = "color: #1d54a7; font-size: 17px"></i>
             </div>
           
         </div>
         
-        <div class = "row justify-content-center">
-        <input style = "background-color: #1769e4" class= "btn  mb-2  btn-animation-1  mt-2 w-100 ml-0" id = "addClient"  type= "submit" value= "Add client" class="col-8" />
+        <div class = "row justify-content-center"> 
+        
+        <input style = "background-image: linear-gradient(to right,#1da128, #82ec8d); color: rgb(22, 22, 22) !important; border-radius: 12px; font-weight: bold; font-size: 27px ; border-right: 0px solid white; box-shadow: 0px 2px 3px 0px rgba(136, 136, 136, 0.726);" class= "btn  mb-2  btn-animation-1  mt-2 w-100 ml-0 " id = "addClient"  type= "submit" value= " Add client" class="col-8" /> 
+        
         </div>
 
       </form>
+    </div>
+    </div>
+    
+    </div>
     </div>
 {% endblock %}
