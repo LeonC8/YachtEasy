@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class = "container-fluid pt-3 pb-3" style = "background-image: linear-gradient(to right,#104391, #5389db) ">
+    
+    <!--===============================================================================================-->
+      <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+      <script src="vendor/bootstrap/js/popper.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+      <script src="vendor/select2/select2.min.js"></script>
+      <script>
+        $(".selection-2").select2({
+          minimumResultsForSearch: 20,
+          dropdownParent: $('#dropDownSelect1')
+        });
+      </script>
+    <!--===============================================================================================-->
+      <script src="js/main.js"></script>
+    
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-23581568-13');
+    </script>
+    <div class = "container-fluid">
+    <div class = "row col-12 w-100 justify-content-center">
+    <div class="container col-11 m-0 pt-4 pb-4 shadow-lg formContainer justify-content-center"  style = "  border-radius: 17px !important; box-shadow: inset 0px 0px 10px 5px hsla(0, 0%, 0%, 0.12); margin-right: 0px !important;" >
+      <form  class= "col-12 w-100" action = "{% url 'editBoat2' user.username %}"  method="POST" id= "form" enctype="multipart/form-data" >
+        
+        {% csrf_token %}
+        <input type= "hidden" name = "boat_id" value = "{{boat.id}}" />
+        <div class="row" id = "editClientRow">
+          
+          <h3 style = "color:rgb(22, 22, 22) !important; "> Edit only neccessary information: </h3>
+          <div class="input-group input-group-icon">
+            <i class="fas fa-user input-icon " style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" value = "{{boat.owner}}" class = " " name = "owner" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;";/>
+            
+          </div>
+          
+          <div class="input-group input-group-icon">
+            <i class="fas fa-anchor input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" value = "{{boat.brand}}" name = "brand" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12);border-radius: 12px;"/>
+            
+          </div>
+
+          <div class="input-group input-group-icon">
+            <i class="fas fa-ship input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" value = "{{boat.model}}" name = "model" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12);border-radius: 12px;"/>
+            
+          </div>
+        </div>
+        
+        <div class="row">
+          
+          <div class="input-group input-group-icon">
+            <i class="fas fa-ship input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="number" value = "{{boat.size}}" name = "size" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
+            
+          </div>
+          <h3 style = "color:rgb(22, 22, 22) "> Specifications</h3>
+          <div class="input-group input-group-icon">
+            <i class="fas fa-calendar input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="number" value = "{{boat.year}}" name = "year" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
+          
+          </div>
+
+          <div class="input-group input-group-icon">
+            <i class="fas fa-ship input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" value = "{{boat.engine}}" name = "engine" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
+            
+          </div>
+          
+
+        </div>
+        <div class="row">
+          
+          
+
+          <div class="input-group input-group-icon">
+            <i class="fas fa-hourglass-start input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="number" value = "{{boat.engine_hours}}" name = "engine_hours" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
+            
+          </div>
+          
+          
+          
+          <div class="input-group input-group-icon">
+            <i class="fas fa-edit input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" value = "{{boat.equipment}}" name = "equipment" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
+          
+          </div>
+
+          <div class="input-group input-group-icon">
+            <i class="fas fa-map-marked-alt input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text"  value = "{{boat.location}}" name = "location" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
+            
+          </div>
+
+        </div>
+        <div class="row">
+          <h3 style = "color:rgb(22, 22, 22) "> Value and description </h3>
+          <div class="input-group input-group-icon">
+            <i class="fas fa-money-bill-wave input-icon" style = "color: #1d54a7; font-size: 17px">  </i>
+            <input type="value" value = "{{boat.price}}" name = "price" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
+            
+          </div>
+
+          <div class="input-group input-group-icon">
+            <i class="fas fa-edit input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+            <input type="text" value = "{{boat.description}}" name = "boat_description" style = "box-shadow: inset 0px 0px 2px 1px hsla(0, 0%, 0%, 0.12); border-radius: 12px;"/>
+            
+          </div>
+
+
+        </div>
+
+          <div class="row" >
+            <h3 style = "color:rgb(22, 22, 22) "> Add photos </h3>
+            <div class="input-group input-group-icon">
+              <i class="fas fa-images input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+              <input multiple="multiple" type= "file" name="photos" value = "Add more pictures" multiple/>
+              
+            </div>
+
+
+          </div>
+
+          <div class="row" >
+            <h3 style = "color:rgb(22, 22, 22) "> Add files </h3>
+            <div class="input-group input-group-icon">
+              <i class="fas fa-images input-icon" style = "color: #1d54a7; font-size: 17px"></i>
+              <input multiple="multiple" type= "file" name="files" value = "Add more files" multiple/>
+              
+            </div>
+
+
+          </div>
+
+
+          
+          
+          
+        
+        <div class = "row justify-content-center"> 
+        
+        <input style = "background-image: linear-gradient(to right,#104391, #5389db) ; color: rgb(255, 255, 255) !important; border-radius: 20px;  font-size: 22px ; border-right: 0px solid white; box-shadow: 0px 2px 3px 0px rgba(136, 136, 136, 0.726);transition: 0.4s !important" class= "btn finishEditingClientBtn mb-2  mt-2 w-100 ml-0 " id = "addClient"  type= "submit" value= "Edit information" class="col-8" /> 
+        
+        </div>
+
+      </form>
+
+      <div class ="row justify-content-center col-12 m-0 mb-4">
+        <a class="btn   mb-2 mt-2 mt-lg-0 pb-1 btnMobile " href = "{% url 'startBoatDeletion' user.username boat.id %}" style = "height: 47px;width:100% !important;font-size: 17px; background-image: linear-gradient(to left, #cf4040, #8d0c0c);; color: white; letter-spacing: 1px; border-right: 0px solid white; transition: 0.4s;padding-top: 1.5% !important"> <i class="fas fa-trash mr-1" style = "margin-top: 4px"></i>  Delete </a> 
+       </div>
+    </div>
+    </div>
+    
+    </div>
+    </div>
+{% endblock %}

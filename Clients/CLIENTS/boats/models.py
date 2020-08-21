@@ -8,7 +8,7 @@ class Boat(models.Model):
     user = models.ForeignKey(User, on_delete= models.CASCADE, )
     owner = models.CharField(max_length = 200, null = True)
     brand = models.CharField(max_length= 200, null = True)
-    model = models.CharField(max_length = 200, null = True)
+    model = models.CharField(max_length = 200, null = True, )
     size = models.IntegerField( null = True)
     year = models.IntegerField(null= True)
     engine = models.CharField(max_length= 200, null = True)
@@ -29,6 +29,9 @@ class Image(models.Model):
     boats = models.ManyToManyField(Boat)
     image = CloudinaryField(folder = 'boats', null = True)
 
-    
+
+class boatFile(models.Model):
+    boats = models.ManyToManyField(Boat)
+    boatFile = CloudinaryField(folder = 'boatFiles', resource_type = "raw",null = True, use_filename = True)
 
 admin.site.register(Boat,)

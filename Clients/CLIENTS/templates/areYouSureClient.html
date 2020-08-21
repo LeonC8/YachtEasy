@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class = "container-fluid">
+    <div class = "row justify-content-center pt-4">
+
+       <h1 class = "col-12 text-center" style = "color: rgb(26, 26, 26) !important "> Are you sure you want to delete this client? </h1>
+    </div>
+       <div class = "row justify-content-center pt-3">
+        <a class="btn col-10 col-lg-4  mb-2 mr-1 mt-2 mt-lg-0 pb-1 btnMobile  " href = "{% url 'deleteClient' user.username client.id %}"  style = "height: 47px;font-size: 17px; background-image: linear-gradient(to left, #cf4040, #8d0c0c);; color: white; letter-spacing: 1px; border-right: 0px solid white; transition: 0.4s;"> <i class="fas fa-trash mr-1" style = "margin-top: 4px"></i>  Yes </a> 
+        <a class="btn  col-10 col-lg-4 mb-2 ml-1 mt-2 mt-lg-0 pb-1 btnMobile " href = "{% url 'home' %}"  style = "height: 47px;font-size: 17px; background-image: linear-gradient(to left, #0e1683, #333cb9);; color: white; letter-spacing: 1px; border-right: 0px solid white; transition: 0.4s;"> <i class="fas fa-times mr-1" style = "margin-top: 4px"></i>  No </a> 
+    </div>
+
+</div>
+
+{% endblock %}

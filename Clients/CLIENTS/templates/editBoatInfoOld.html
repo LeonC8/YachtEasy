@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class = "container-fluid">
+<div class = "row justify-content-center">
+<div class = "col-12 col-lg-5 justify-content-center">
+    <form class= " mt-4 col-12 m-auto pt-3 justify-content-center boatDetailsContainer mb-3 " action = "{% url 'editBoat2' user.username %}"  method="POST" enctype="multipart/form-data"  >
+    
+        {% csrf_token %}
+      
+        
+      
+        <input type= "hidden" name = "boat_id" value = "{{boat.id}}" />
+        
+        <div class="input-group mb-3">
+          <div class="input-group-prepend display-inline ">
+            <span class=" input-group-text"> Owner </span>
+          </div>
+          <input type= "text" name="owner" value = "{{boat.owner}} " />
+        </div>
+    
+        <div class="input-group mb-3">
+          <div class="input-group-prepend ">
+            <span class=" input-group-text"> Brand </span>
+          </div>
+          <input type= "text" name="brand" value = "{{boat.brand}} " />
+        </div>
+    
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class=" input-group-text"> Model </span>
+          </div>
+          <input type= "text" name="model" value = "{{boat.model}} " />
+        </div>
+    
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class=" input-group-text"> Size in feet </span>
+          </div>
+          <input type= "number" name="size" value = "{{boat.size}}" />
+        </div>
+    
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class=" input-group-text"> Year </span>
+          </div>
+          <input type= "number" name="year" value = "{{boat.year}}" />
+        </div>
+      
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class=" input-group-text"> Engine </span>
+          </div>
+          <input type= "text" name="engine" value = "{{boat.engine}} " />
+        </div>
+    
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class=" input-group-text"> Engine hours </span>
+          </div>
+          <input type= "number" name="engine_hours" value = "{{boat.engine_hours}}" />
+        </div>
+    
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class=" input-group-text"> Equipment </span>
+          </div>
+          <input type= "text" name="equipment" value = "{{boat.equipment}} " />
+        </div>
+    
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class=" input-group-text"> Location </span>
+          </div>
+          <input type= "text" name="location" value = "{{boat.location}} " />
+        </div>
+    
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class=" input-group-text display-inline" style = "font-size :20px"> Price </span>
+          </div>
+          <input  type= "number" name="price" class = "display-inline" value = "{{boat.price}}" />
+        </div>
+    
+        <div class="input-group mb-3">
+        
+          <div class="input-group-prepend">
+            <span class=" input-group-text"> Description </span>
+          </div>
+          <input  type= "text" name="boat_description" value = "{{boat.description}}" />
+          
+        </div>
+        
+        
+    
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class=" input-group-text"> Main Photo </span>
+          </div>
+    
+            <img height="130"  src="{{ boat.photo.url }}" name="photo">
+            
+        <div class = "col-12 mt-3 mx-0 p-0">
+          <div class="input-group-prepend">
+            <span class=" input-group-text"> Add more photos </span>
+          </div>
+                
+            <input multiple="multiple" type= "file" name="photo" value = "Add more pictures" />
+            
+        </div>
+        </div>
+        <div class = "row col-12 justify-content-center m-0">
+        <input style = " height:86%; background-image: linear-gradient(to right, rgb(7, 5, 104), rgb(69, 67, 175)); color : white; font-size: 20px; border-radius: 20px !important;width: 98.5%;margin-right: 3px" id= "editBoat" class= "btn mb-2" type= "submit" value= "Finish editing" class="col-12 " />
+      </div>
+      </form>
+    <div class ="row justify-content-center col-12 m-0 mb-4">
+     <a class="btn   mb-2 mt-0 pb-1 btnMobile " href = "{% url 'deleteBoat' user.username boat.model %}"  style = "height: 47px;width:95.5% !important;font-size: 17px; background-image: linear-gradient(to left, #ac3c3c, #a70d0d);; color: white; letter-spacing: 1px; border-right: 0px solid white; transition: 0.4s;"> <i class="fas fa-trash mr-1" style = "margin-top: 4px"></i>  Delete </a> 
+    </div>
+    
+     
+    </div>
+
+</div>
+</div>
+
+    {% endblock %}

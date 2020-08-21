@@ -10,7 +10,7 @@
       <div class=" col-12 col-lg-2  pb-0  pr-2 left-side buttonsContainerBoats " style = " border: 0px solid white;background-color: rgb(243, 243, 243);">
       
       
-        <a href="{% url 'addBoat' user.username %} " class="btn clientsBtn btn-animation-1  mt-2 col-4 col-lg-10 ml-2 font-weight-bold" style = "border:0px solid black !important;; font-size: 17px "> <span style = "font-size : 14px">  <i class="fas fa-plus mr-1" id ="plusIcon" > </i> </span>  Add Boat</a> 
+        <a href="{% url 'addBoat' user.username %} " class="btn clientsBtn btn-animation-1  mt-2 col-4 col-lg-10 ml-2 font-weight-bold" style = " border:0px solid black !important;; font-size: 17px "> <span style = "font-size : 14px">  <i class="fas fa-plus mr-1" id ="plusIcon" > </i> </span>  Add Boat</a> 
           <a href="{% url 'filterBoats' user.username %} " class="btn clientsBtn btn-animation-1 mt-2 col-4 col-lg-10 ml-2 shadow font-weight-bold justify-content-center" style = "border:0px solid black !important; font-size: 17px;font-size: 17px "> <i class="fas fa-search mr-1"></i> Filter </a> 
           
 
@@ -38,14 +38,14 @@
             
             {% if boats %}
             {% for boat in boats %}
-            
-                <div id = "boat-card" class="card justify-content-center shadow d-inline-block  mb-2 ml-2 bg-light " style = "border-radius: 16px !important; ">
-                  
+                
+                <div id = "boat-card" class="card justify-content-center shadow d-inline-block  mb-3 pb-2 bg-light " style = "border-radius: 16px !important; ">
+                  <a href = "{% url 'boat_details' user.username boat.id  %}" class = "cardLink"> </a>
                   <div class="card-body p-0 ">
                     
                    
                     
-                    <div class = "w-100 py-3 pl-3 m-0 " style = "background-image: linear-gradient(to right,#104391, #5389db); border-top-right-radius: 16px; border-top-left-radius: 16px">
+                    <div class = "w-100 py-3 pl-3 m-0 " style = "background-image: linear-gradient(to right,#104391, #5389db) !important; border-top-right-radius: 16px; border-top-left-radius: 16px">
                       <h4 class="card-title  ml-2 mt-1 my-lg-0 ml-lg-0 " > {{boat.model }} </h4>
                     </div>
                     
@@ -63,31 +63,31 @@
                       <li class="list-group-item pl-4 pl-lg-3"><p class="card-text "> <b> Owner : </b>{{boat.owner}} </p></li>
                       <li class= "list-group-item pl-4 pl-lg-3"><p class= "card-text  "> <b> Brand: </b>{{ boat.brand }}</p></li>
                       <li class= "list-group-item pl-4 pl-lg-3 "><p class= "card-text  "> <b> Feet:  </b>{{ boat.size }}</p></li>
-                      <li class= "list-group-item pl-4 pl-lg-3"><p class= "card-text  "> <b> Year: </b>{{ boat.year }}</p></li>
+                      <li class= "list-group-item pl-4 pl-lg-3 mb-0 pb-0" style = "border-bottom-width: 0px !important"><p class= "card-text  "> <b> Year: </b>{{ boat.year }}</p></li>
                     </ul>
   
                     
-                     
+                     <!--
       
-                    <form action="{% url 'boat_details' user.username boat.model  %}" method="POST" class = "mt-2">
+                    <form action="{% url 'boat_details' user.username boat.id  %}" method="POST" class = "mt-2">
                       {% csrf_token %}
                       <input type = "hidden" value = "{{ user.username }}" name= "username" >
                       <button class = "btn  ml-3 ml-lg-2  my-2 btnMobile " style = "height: 42px;overflow: hidden; font-size: 17px; background-image: linear-gradient(to right,#234e8d, #346ab9);; color: white; letter-spacing: 1px;  border-right: 0px solid white; transition: 0.4s"  > <i class="fas fa-angle-double-right mr-1" style = "margin-top: 4px"></i>  More   </button>       
                     </form>
                       
 
-                  <form  action = "{% url 'deleteBoat' user.username boat.model %}" method="post">
+                  <form  action = "{% url 'deleteBoat' user.username boat.id %}" method="post">
                     {% csrf_token %}
                     <div class="ml-0 flex  p-0" >
                     <button class="btn ml-3 ml-lg-2 mb-2 mt-2 btnMobile " style = "height: 42px;overflow: hidden; font-size: 17px; background-image: linear-gradient(to left, #ac3c3c, #a70d0d);; color: white; letter-spacing: 1px; border-right: 0px solid white; transition: 0.4s;"> <i class="fas fa-trash mr-1" style = "margin-top: 4px"></i>  Delete </button> 
                     </div>
                   </form>
                                 
-                    
+                    -->
                   </div>
               
                 </div>
-  
+                
                 
           
               

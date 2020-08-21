@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Client, ClientForm, clientFile
+from .models import Client, clientFile
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -19,9 +19,9 @@ def home(request,):
     user = User.objects.get(username = username)
     clients = Client.objects.filter(user = user)
     
-    form = ClientForm()
+ 
     
-    return render(request, 'clients.html', {"form": form, "clients" : clients, "user": user})
+    return render(request, 'clients.html', { "clients" : clients, "user": user})
 
 def signUpForm(request,):
 
@@ -33,8 +33,8 @@ def addUser(request):
     user.save()
     user = User.objects.get(username = request.POST["username"])
 
-    form = ClientForm()
-    return render(request, 'clients.html', {"form": form, "user": user}) 
+    
+    return render(request, 'clients.html', { "user": user}) 
 
 def profile(request, username):
     user = User.objects.get(username=username)
@@ -50,34 +50,46 @@ def addClient(request, username):
 def addClient2(request, username):
     user = User.objects.get(username = username)
     
+    #Client
     user = user
     name = request.POST.get('name')
     phone = request.POST.get("phone")
     email = request.POST.get("email")
     state  = request.POST.get("state")
-    brand  = request.POST.get("brand")
-    model = request.POST.get("model")
+
+    #Current Boat
+    model  = request.POST.get("model")
     year =  request.POST.get("year")
     location = request.POST.get("location")
-    description = request.POST.get("description")
-    look1 = request.POST.get("look1")
-    look2 = request.POST.get("look2")
+    equipment = request.POST.get("equipment")
+    value = request.POST.get("value")
+
+    #Boat of interest
+    model_interest = request.POST.get("model_interest")
+    year_interest = request.POST.get("year_interest")
+    equipment_interest = request.POST.get("equipment_interest")
     budget = request.POST.get("budget")
+    other_interests = request.POST.get("other_interests")
+
+    #Communication
     first_contact = request.POST.get("first_contact")
+    to_contact = request.POST.get("to_contact")
     to_contact_text = request.POST.get("to_contact_text")
     communication = request.POST.get("communication")
     importance = request.POST.get("importance")
-    to_contact = request.POST.get("to_contact")
+    
     
 
-    Client.objects.create(user = user, name = name, phone = phone, email = email, state = state,
-    brand = brand, model = model, year = year, location = location, description = description,
-    look1 = look1, look2 = look2, budget = budget, first_contact = first_contact, to_contact = to_contact, to_contact_text = to_contact_text,
+    Client.objects.create(user = user, name = name, phone = phone, email = email, state = state, 
+    model = model, year = year, location = location, equipment = equipment, value = value,  
+    model_interest = model_interest, year_interest = year_interest, 
+    equipment_interest = equipment_interest, budget = budget, other_interests = other_interests, 
+    first_contact = first_contact, to_contact = to_contact, to_contact_text = to_contact_text,
     communication = communication, importance = importance, )
 
     client = Client.objects.get(user = user, name = name, phone = phone, email = email, state = state,
-    brand = brand, model = model, year = year, location = location, description = description,
-    look1 = look1, look2 = look2, budget = budget, first_contact = first_contact, to_contact = to_contact, to_contact_text = to_contact_text,
+     model = model, year = year, location = location, 
+     budget = budget, first_contact = first_contact, to_contact = to_contact, to_contact_text = to_contact_text,
     communication = communication, importance = importance,)
 
     for file1 in request.FILES.getlist('files'):
@@ -88,12 +100,12 @@ def addClient2(request, username):
 
     return redirect('home')
 
-def clientDetails(request, name):
-    username = request.POST.get("username")
+def clientDetails(request, id, username):
+    
     user = User.objects.get(username = username)
-    client = Client.objects.get(name = name, user = user)
+    client = Client.objects.get(id = id, user = user)
     importance = client.importance
-
+    
     if clientFile.objects.filter(clients = client):
         files = clientFile.objects.filter(clients = client)
     else: 
@@ -101,10 +113,21 @@ def clientDetails(request, name):
 
     return render(request, 'clientDetails.html', {"client": client, "importance": importance, 'files': files, 'user': user})
 
-def deleteClient(request, name):
-    Client.objects.get(name = name).delete()
+def deleteClient(request, username, id):
+    
+    user = User.objects.get(username = username)
+
+    Client.objects.get(id = id,  user = user).delete()
 
     return redirect('home')
+
+def startClientDeletion(request, username, id):
+
+    user = User.objects.get(username = username)
+    client = Client.objects.get(user = user, id = id)
+
+    return render(request, 'areYouSureClient.html', {"user": user, "client": client})
+    
     
 def filterClients(request, username):
     user = User.objects.get(username = username)
@@ -116,7 +139,7 @@ def filterClients2(request, username):
     user = User.objects.get(username = username)
     clients = Client.objects.filter(user = user)
 
-    
+    #Ranges
     if request.POST.get("budget_min") and request.POST.get("budget_max"):
         min_budget = request.POST.get("budget_min")
         max_budget = request.POST.get("budget_max")
@@ -129,21 +152,30 @@ def filterClients2(request, username):
         importance_min = request.POST.get("importance_min")
         importance_max = request.POST.get("importance_max")
         clients = clients.filter( importance__range = (importance_min, importance_max))
-    if request.POST.get("state"):
-        state = request.POST.get("state")
-        clients = clients.filter( state__icontains = state)
-    if request.POST.get("location"):
-        location = request.POST.get("location")
-        clients = clients.filter( location__icontains = location)
-    if request.POST.get("brand"):
-        brand = request.POST.get("brand")
-        clients = clients.filter( brand__icontains = brand)
-    if request.POST.get("model"):
-        model = request.POST.get("model")
-        clients = clients.filter( model__icontains = model)
+
+    #Client
     if request.POST.get("name"):
         name = request.POST.get("name")
         clients = clients.filter( name__icontains = name)
+    if request.POST.get("state"):
+        state = request.POST.get("state")
+        clients = clients.filter( state__icontains = state)
+
+    #Current Boat
+    if request.POST.get("model"):
+        model = request.POST.get("model")
+        clients = clients.filter( model__icontains = model)
+    if request.POST.get("location"):
+        location = request.POST.get("location")
+        clients = clients.filter( location__icontains = location)
+    
+    #Future interest
+    if request.POST.get("model_interest"):
+        model_interest = request.POST.get("model_interest")
+        clients = clients.filter( model_interest__icontains = model_interest)
+    if request.POST.get("other_interests"):
+        other_interests = request.POST.get("other_interests")
+        clients = clients.filter( other_interests__icontains = other_interests)
     
     return render(request, 'filters/filtered_clients.html', {'clients': clients} )
 
@@ -166,10 +198,11 @@ def UserProfile(request, username):
     user = User.objects.get(username = username)
     return render(request, 'profile.html', {'user': user})
 
-def editClientInfo(request, name):
+def editClientInfo(request, id):
+    
     username = request.POST["username"]
     user = User.objects.get(username = username)
-    client = Client.objects.get(name = name, user = user)
+    client = Client.objects.get(id = id, user = user)
 
     return render(request, 'editClientInfo.html', {'client': client, 'user': user})
 
@@ -179,24 +212,40 @@ def editClientInfo2(request, username):
     user = User.objects.get(username = username)
     client = Client.objects.get(id= client_id, user = user)
 
+    #Client
     client.name = request.POST.get('name')
     clientphone = request.POST.get("phone")
     client.email = request.POST.get("email")
     client.state  = request.POST.get("state")
-    client.brand  = request.POST.get("brand")
+
+    #Current boat
     client.model = request.POST.get("model")
     client.year =  request.POST.get("year")
     client.location = request.POST.get("location")
-    client.description = request.POST.get("description")
-    client.look1 = request.POST.get("look1")
-    client.look2 = request.POST.get("look2")
+    client.equipment = request.POST.get("equipment")
+    client.value = request.POST.get("value")
+    
+    #Boat of interest
+    client.model_interest = request.POST.get("model_interest")
+    client.year_interest = request.POST.get("year_interest")
+    client.equipment_interest = request.POST.get("equipment_interest")
     client.budget = request.POST.get("budget")
+    client.other_interests = request.POST.get("other_interests")
+
+    #Communication
     client.first_contact = request.POST.get("first_contact")
+    if request.POST.get("to_contact"):
+        client.to_contact = request.POST.get("to_contact")
     client.to_contact_text = request.POST.get("to_contact_text")
     client.communication = request.POST.get("communication")
     client.importance = request.POST.get("importance")
-    client.to_contact = request.POST.get("to_contact")
     client.save()
+
+    for file1 in request.FILES.getlist('files'):
+
+        file2 = clientFile.objects.create( clientFile = file1 )
+        file2.clients.add(client)
+        file2.save()
     
     clients = Client.objects.filter(user = user)
     return redirect(home)

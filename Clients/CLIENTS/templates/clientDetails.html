@@ -2,19 +2,15 @@
 
 {% block content %}
 <div class = "container-fluid">
-<div class= "row col-12 mt-3 ml-0 justify-content-left pl-1">
-  <h2 class = "alert rounded-pill shadow-lg mb-4 col-5 col-lg-3 display-inline" style = "background-image: linear-gradient(to right,#164b99, #74a4eb) ; border-right: 0px solid white;  font-weight: bold;text-align: center; font-size: 40px;color: whitesmoke;"  > {{ client.name }}</h2>
-  <form action = "{% url 'editClientInfo' client.name %}" method="post" class ="ml-4 display-inline" style = "margin-top: 22px">
-    {% csrf_token %}
-    <input type= "hidden" name= "username" value = "{{user.username}}">
-    <button style = "height: 40px;overflow: hidden; font-size: 16px; font-weight: bold; transition: 0.4s; border-right: 0px solid white;; background-color: #c53d07; color: white; letter-spacing: 1px; " class = "btn ml-2 col-12 display-inline editInfoBtn" > <i class="fas fa-edit mr-1" style = "margin-top: 4px"></i> Edit information </button>       
-  </form>
+<div class= "row col-12 mt-3 ml-0 justify-content-center pl-1">
+  <h2 id = "clientName" class = "alert rounded-pill shadow-lg mb-4 col-5 col-lg-3 display-inline" style = "background-image: linear-gradient(to right,#164b99, #74a4eb) ; border-right: 0px solid white;  font-weight: bold;text-align: center; font-size: 40px;color: whitesmoke;"  > {{ client.name }}</h2>
+  
 </div>
 </div>
 
 <div class = "container-fluid">
-<div class = "row col-12  justify-content-left ">
-<div class = "card shadow rounded  col-12 col-lg-3 ml-2 mr-2 mb-2" style = "color:rgb(255, 255, 255); background-color: #3d76cb;">
+<div class = "row col-12  justify-content-center ">
+<div class = "card clientInfoCard shadow   col-12 col-lg-3 ml-4 ml-lg-4 mr-2 mb-3 mb-lg-2 " style = "border-radius:20px;color:rgb(255, 255, 255); background-image: linear-gradient(to bottom, #2356a1, #417acf)">
   
   <div class = "card-body justify-content-center font-weight-bold" style = "text-align: center;">
     <div class = "card-title" style = "text-align: center;font-size: 32px; color: white!important; font-weight: bolder !important">
@@ -27,12 +23,17 @@
     Email : {{client.email}}
     <br>
     State : {{client.state}}
+    <br>
+    
+    Importance : {{client.importance}}
     </p>
+    
+  
   </div>
 </div>
 
 
-<div class = "card shadow rounded col-12 col-lg-3 display-inline ml-2 mr-2 mb-2" style = "color:rgb(255, 255, 255); background-color: #3d76cb;">
+<div class = "card clientInfoCard shadow col-12 col-lg-3 display-inline ml-4 mr-2 mb-3 mb-lg-2" style = "border-radius:20px;color:rgb(255, 255, 255); background-image: linear-gradient(to bottom, #2356a1, #417acf)">
   
   <div class = "card-body justify-content-center font-weight-bold " style = "text-align: center;">
     <div class = "card-title" style = "text-align: center;font-size: 30px">
@@ -40,29 +41,37 @@
     </div>
     <hr class = "w-100" style = "border-top: 1px solid rgb(0, 0, 0)">
     <p style = "font-size: 18px">
-      {{ client.brand }} {{ client.model }}
+       {{ client.model }}
     <br>
     Location: {{client.location}}
     <br>
     Year : {{client.year}}
+    <br>
+    Equipment : {{client.equipment}}
+    <br>
+    Value : {{client.value}}
     </p>
   </div>
 </div>
 
 
-<div class = "card shadow rounded col-12 col-lg-3 display-inline ml-2 mr-2 mb-2" style = "color:rgb(255, 255, 255); background-color: #3d76cb;">
+<div class = "card clientInfoCard shadow col-12 col-lg-3 display-inline ml-4 mr-2 mb-3 mb-lg-2" style = "border-radius:20px;color:rgb(255, 255, 255); background-image: linear-gradient(to bottom, #2356a1, #417acf)">
   
   <div class = "card-body justify-content-center font-weight-bold" style = "text-align: center;">
     <div class = "card-title" style = "text-align: center;font-size: 30px">
-      Other
+      Boat of interest
     </div>
     <hr class = "w-100" style = "border-top: 1px solid rgb(0, 0, 0)">
     <p style = "font-size: 18px">
-      Budget : {{client.budget}}
+    Model: {{client.model_interest}}
     <br>
-    Offer 1: {{client.look1}}
+    Year: {{client.year_interest}}
     <br>
-    Offer 2: {{client.look2}}
+    Equipment: {{client.equipment_interest}}
+    <br>
+    Budget: {{client.budget}}
+    <br>
+    Other interests: {{client.other_interests}}
     </p>
   </div>
 </div>
@@ -71,9 +80,9 @@
 </div>
 
 
-
-<div class = "row col-12 mt-3 justify-content-left pl-4" id = "comContainer"> 
-  <div class = "card shadow rounded  col-12 col-lg-9 ml-4 mr-2 mb-3 comCard " style = "color:rgb(255, 255, 255); background-color: #3d76cb;">
+<div class = "container-fluid">
+<div class = "row col-12 mt-1 mt-lg-3 justify-content-center " id = "comContainer"> 
+  <div class = "card clientInfoCard shadow   col-12 col-lg-9 ml-4 mr-2 mb-3 mb-lg-2 comCard " style = "border-radius:20px;color:rgb(255, 255, 255); background-image: linear-gradient(to bottom, #2356a1, #417acf)">
   
     <div class = "card-body font-weight-bold" >
       <div class = "card-title" style = "font-size: 30px">
@@ -84,6 +93,8 @@
       First contact : {{client.first_contact}}
       <br>
       To contact : {{ client.to_contact}}
+      <br>
+      Notes for contacting : {{client.to_contact_text}}
       <br>
       Communication : {{ client.communication }}
       <br>
@@ -108,63 +119,14 @@
   </div>
 </div>
 </div>
-
-<!--
-<div id = "client-card" class="card justify-content-center shadow d-inline-block  my-3 ml-4 pt-0" >
-                
-    <div class="card-body p-0">
-        
-            
-        
-        {% if importance >= 8 %}
-        <div class = "w-100 py-2 m-0 " style = "background-color: #1769e4 ;">
-            <h4 class="card-title ml-3 mt-2" >{{client.name}} ({{client.importance }})</h4>
-        </div>
-        {% endif %}
-
-
-      {% if boat.photo %}
-      <div >
-      <img height="130" src="{{ boat.photo.url }}">
-      </div>
-      {% endif %}
-      
-      <ul class="list-group list-group-flush "></ul>
-        
-        <li class="list-group-item"><p class="card-text w-100">Email: {{client.email}}</p></li>
-        <li class="list-group-item"><p class="card-text">Phone : {{client.phone}}</p></li>
-        <li class= "list-group-item"><p class= "card-text"> Model: {{ client.brand }} {{ client.model }}</p></li>
-        <li class="list-group-item"><p class="card-text w-100"> State : {{client.state}}</p></li>
-        <li class="list-group-item"><p class="card-text">Boat year : {{client.year}}</p></li>
-        <li class= "list-group-item"><p class= "card-text"> Location: {{ client.location }}</p></li>
-        <li class="list-group-item"><p class="card-text w-100">Description: {{client.description}}</p></li>
-        <li class="list-group-item"><p class="card-text">Look1: {{client.look1}}</p></li>
-        <li class= "list-group-item"><p class= "card-text"> Look2: {{client.look2}}</p></li>
-        <li class="list-group-item"><p class="card-text w-100"> Budget: {{client.budget}}</p></li>
-        <li class="list-group-item"><p class="card-text">First contact: {{client.first_contact}}</p></li>
-        <li class= "list-group-item"><p class= "card-text"> To contact: {{client.to_contact}}</p></li>
-        <li class="list-group-item"><p class="card-text">Communication: {{client.communication}}</p></li>
-        
-      </ul>
-
-      <form action = "{% url 'clientDetails' client.name %}" method="post">
-        {% csrf_token %}
-        <button style = "height: 40px;overflow: hidden; " class = "btn btn-primary ml-2 my-2">   Edit info  </button>       
-      </form>
-        
-      <form  action = "{% url 'deleteClient' client.name %}" method="post">
-        {% csrf_token %}
-        <div class="ml-2 flex p-0" >
-        <button class="btn btn-danger mb-2 mt-2 " style = "height: 40px;overflow: hidden;"> Delete </button>
-        </div>
-      </form>
-
-      
-                  
-      
-    </div>
-
-  </div>
--->
-
+</div>
+<div class = "container-fluid mb-4">
+<div class = "row justify-content-center col-12">
+<form action = "{% url 'editClientInfo' client.id %}" method="post" class ="col-10 col-lg-6 ml-4 display-inline" >
+  {% csrf_token %}
+  <input type= "hidden" name= "username" value = "{{user.username}}">
+  <button style = "border-radius:20px !important;height: 40px;overflow: hidden; font-size: 16px; font-weight: bold; transition: 0.4s; border-right: 0px solid white;; background-image: linear-gradient(to right, #2356a1, #417acf); color: white; letter-spacing: 1px; " class = "btn ml-2 col-12 display-inline editInfoBtn" > <i class="fas fa-edit mr-1" style = "margin-top: 4px"></i> Edit information </button>       
+</form>
+</div>
+</div>
 {% endblock %}

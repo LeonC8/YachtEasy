@@ -9,7 +9,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
-from .models import Boat, Image
+from .models import Boat, Image, boatFile
 import cloudinary
 
 
@@ -50,12 +50,17 @@ def addBoat2(request, username):
     boat = Boat.objects.get(user= user, brand = brand, model = model, year = year, location = location,)
     
 
-    
-    for photo in request.FILES.getlist('photoslist'):
+    for photo1 in request.FILES.getlist('photoslist'):
         
-        image = Image.objects.create( image = photo)
-        image.boats.add(boat)
-        image.save()
+        photo2 = Image.objects.create( image = photo1 )
+        photo2.boats.add(boat)
+        photo2.save()
+
+    for file1 in request.FILES.getlist('files'):
+        
+        file2 = boatFile.objects.create( boatFile = file1 )
+        file2.boats.add(boat)
+        file2.save()
     
     
 
@@ -65,22 +70,42 @@ def addBoat2(request, username):
 
 
     
-def boat_details(request, username, model):
+def boat_details(request, username, id):
     
     user = User.objects.get(username = username)
-    boat = Boat.objects.get(user = user, model = model)
+    boat = Boat.objects.get(user = user, id= id)
     if Image.objects.filter(boats = boat):
         images = Image.objects.filter(boats = boat)
     else: 
         images = None
     
-    return render(request, "boat_details.html", {"boat": boat, 'images': images})
+    if boatFile.objects.filter(boats = boat):
+        files = boatFile.objects.filter(boats = boat)
+    else: 
+        files = None
 
-def deleteBoat(request, username, model):
+    return render(request, "boat_details.html", {"boat": boat, 'images': images, "files": files })
+
+def editBoat(request, username, id):
+    
+    user = User.objects.get(username = username)
+    boat = Boat.objects.get(user = user, id = id )
+
+    if Image.objects.filter(boats = boat):
+        images = Image.objects.filter(boats = boat)
+    else: 
+        images = None
+    
+    return render(request, "editBoatInfo.html", {"boat": boat, 'images': images})
+
+
+def deleteBoat(request, username, id):
+
     user = User.objects.get(username= username)
     boats = user.boat_set.all()
-    boats = boats.filter(model = model)
+    boats = boats.filter(id = id)
     boats.delete()
+    
     return redirect('boatsHome', username = username) 
 
 def filterBoats2(request, username):
@@ -134,6 +159,14 @@ def filterBoats2(request, username):
 
     return render(request, 'filters/filtered_boats.html', { 'username': username, 'boats': boats})
 
+
+def startBoatDeletion(request, username, id):
+
+    user = User.objects.get(username = username)
+    boat = Boat.objects.get(user = user, id = id)
+
+    return render(request, 'areYouSureBoat.html', {"user": user, "boat": boat})
+
 def filterBoats(request, username):
     return render(request, 'filters/filterBoats.html', {'username': username })
 
@@ -173,19 +206,25 @@ def editBoat2(request, username):
     if request.POST["location"]!= boat.location:
         boat.location = request.POST["location"]
 
-    if request.POST.get("description")!= boat.description: 
-        boat.description = request.POST.get("description")
+    if request.POST["boat_description"]!= boat.description: 
+        boat.description = request.POST["boat_description"]
 
 
     
     if request.FILES.getlist('photos'):
-        photoslist = request.FILES.getlist('photos')
+        
 
-        for photo in request.FILES.getlist('photoslist'):
+        for photo in request.FILES.getlist('photos'):
         
             image = Image.objects.create( image = photo)
             image.boats.add(boat)
             image.save()
+            
+    for file1 in request.FILES.getlist('files'):
+
+        file2 = boatFile.objects.create( boatFile = file1 )
+        file2.boats.add(boat)
+        file2.save()
 
     boat.save()
     

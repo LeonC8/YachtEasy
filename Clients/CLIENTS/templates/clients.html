@@ -37,19 +37,22 @@
           
          
           {% for client in clients %}
+          
+            
+              <div id = "client-card" class=" card justify-content-center shadow d-inline-block mb-2 ml-2 bg-light clientCard"  style = "border-radius: 16px; width: 340px ; height: 220px" >
+        
+                 
               
-              <div id = "client-card" class=" card justify-content-center shadow d-inline-block mb-2 ml-2 bg-light clientCard"  style = "border-radius: 16px; width: 340px ; height: 340px" >
-                
-                <div class="card-body p-0 rounded  ">
-                  
+                <div class="card-body  p-0 rounded  ">
+                  <a href = "{% url 'clientDetails' client.id user.username %}" class = "cardLink"> </a>
                   {% if client.importance >= 8 %} 
                   
                   <div class = "w-100 py-1 m-0 " style = "background-image: linear-gradient(to right,#104391, #5389db);  border-top-right-radius : 12px; border-top-left-radius: 12px;">
-                      <h3 class="card-title ml-3 mt-2 " > {{client.name}}  ({{client.importance }})  </h3>
+                      <h3 class="card-title ml-3 mt-2 " > {{client.name}}    </h3>
                   </div>
                   {% else %}
                   <div class = "w-100 py-1 m-0 " style = "background-image: linear-gradient(to right,#104391, #5389db); border: 0px solid black;  border-top-right-radius : 12px; border-top-left-radius: 12px;">
-                    <h3 class="card-title ml-3 mt-2"  >{{client.name}} ({{client.importance }})</h3>
+                    <h3 class="card-title ml-3 mt-2"  >{{client.name}} </h3>
                   </div>
                   {% endif %}
                   
@@ -61,38 +64,34 @@
                   
                   <ul class="list-group list-group-flush "></ul>
                     
-                    <li class="list-group-item"><p class="card-text w-100"><b>@: </b>{{client.email}}</p></li>
+                    <li class="list-group-item"><p class="card-text w-100">{{client.email}}</p></li>
                     <li class="list-group-item"><p class="card-text"> <b> Phone:  </b> {{client.phone}}</p></li>
-                    <li class= "list-group-item"><p class= "card-text"> <b> Boat:  </b> {{ client.model }}</p></li>
+                    <li class= "list-group-item" style = "border-bottom-width: 0px !important"><p class= "card-text"> <b> Boat:  </b> {{ client.model }}</p></li>
                     
                   </ul>
 
                   
-                    <form action = "{% url 'clientDetails' client.name %}" method="POST" class = "mt-2">
-                      {% csrf_token %}
-                      <input type = "hidden" value = "{{ user.username }}" name= "username">
-                      <button style = "height: 42px;overflow: hidden; font-size: 17px; background-image: linear-gradient(to right,#234e8d, #346ab9);; color: white; letter-spacing: 1px;  border-right: 0px solid white; transition: 0.4s" class = "btn ml-2 my-2 btnMobile " > <i class="fas fa-angle-double-right mr-1" style = "margin-top: 4px"></i>  More   </button>       
-                    </form>
-                      
+                  
 
-                  <form  action = "{% url 'deleteClient' client.name %}"method="post">
+              <!--    <form  method="post" >
                     {% csrf_token %}
-                    <div class="ml-2 flex  p-0" >
-                    <button class="btn mb-2 mt-2 btnMobile " style = "height: 42px;overflow: hidden; font-size: 17px; background-image: linear-gradient(to left, #c04a4a, #a70d0d);; color: white; letter-spacing: 1px; border-right: 0px solid white; transition: 0.4s;"> <i class="fas fa-trash mr-1" style = "margin-top: 4px"></i>  Delete </button> 
+                    <div class="ml-2 flex  p-0"  >
+                      <input type = "hidden" value = "{{ user.username }}" name= "username">
+                    <button class="btn mb-2 mt-2 btnMobile "  style = "height: 42px;overflow: hidden; font-size: 17px; background-image: linear-gradient(to left, #c04a4a, #a70d0d);; color: white; letter-spacing: 1px; border-right: 0px solid white; transition: 0.4s;z-index: 2 !important;"> <i class="fas fa-trash mr-1" style = "margin-top: 4px"></i>  Delete </button> 
                     </div>
                   </form>
-    
+    -->
                   
                               
                   
                 </div>
                
-
+            
             
               </div>
 
          
-        
+            
             
         
         {% endfor %} 
